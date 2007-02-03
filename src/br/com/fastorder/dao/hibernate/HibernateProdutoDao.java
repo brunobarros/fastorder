@@ -12,6 +12,8 @@ import br.com.fastorder.model.Produto;
  */
 public class HibernateProdutoDao extends HibernateGenericDao<Produto, Long> implements ProdutoDao {
 
+	private static final long serialVersionUID = 5208691621404868354L;
+
 	public HibernateProdutoDao(Session session) {
 		super(Produto.class, session);
 	}

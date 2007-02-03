@@ -24,27 +24,27 @@ public class HibernateSessionFactory implements Serializable {
 	/**
 	 * Session Factory.
 	 */
-	private static final SessionFactory sessionFactory;
+	private final SessionFactory sessionFactory;
 	
 	/**
 	 * Session Thread.
 	 */
-	private static final ThreadLocal<Session> threadSession = new ThreadLocal<Session>();
+	private final ThreadLocal<Session> threadSession = new ThreadLocal<Session>();
 	
 	/**
 	 * Transaction Thread.
 	 */
-	private static final ThreadLocal<Transaction> threadTransaction = new ThreadLocal<Transaction>();
+	private final ThreadLocal<Transaction> threadTransaction = new ThreadLocal<Transaction>();
 	
 	/**
 	 * Configuration.
 	 */
-	private static final Configuration cfg;
+	private final Configuration cfg;
 	
 	/**
 	 * 
 	 */
-	static {
+	public HibernateSessionFactory() {
 		cfg = new AnnotationConfiguration();
 		cfg.configure();
 		sessionFactory = cfg.buildSessionFactory();

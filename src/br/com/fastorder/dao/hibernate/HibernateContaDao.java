@@ -14,6 +14,8 @@ import br.com.fastorder.model.Mesa;
  */
 public class HibernateContaDao extends HibernateGenericDao<Conta, Long> implements ContaDao {
 
+	private static final long serialVersionUID = 5043717230839340682L;
+
 	public HibernateContaDao(Session session) {
 		super(Conta.class, session);
 	}

@@ -22,16 +22,12 @@ import org.hibernate.validator.NotNull;
 @Table(name="tipo_produto")
 public class TipoProduto implements Serializable {
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -2319575271713947181L;
 
 	@Id
 	@GeneratedValue
 	private Long id;
 	
-	@NotNull
 	private String descricao;
 	
 	@OneToMany(mappedBy = "tipo", cascade = CascadeType.ALL)
@@ -67,6 +63,56 @@ public class TipoProduto implements Serializable {
         if (id != null ? !id.equals(tipoProduto.id) : tipoProduto.id != null) return false;
 
         return true;
+	}
+	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return String.format("{TipoProduto id=[%s] descricao=[%s]}", id, descricao);
+	}
+
+	/**
+	 * @return the descricao
+	 */
+	public String getDescricao() {
+		return descricao;
+	}
+
+	/**
+	 * @param descricao the descricao to set
+	 */
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+
+	/**
+	 * @return the id
+	 */
+	public Long getId() {
+		return id;
+	}
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	/**
+	 * @return the produtos
+	 */
+	public Set<Produto> getProdutos() {
+		return produtos;
+	}
+
+	/**
+	 * @param produtos the produtos to set
+	 */
+	public void setProdutos(Set<Produto> produtos) {
+		this.produtos = produtos;
 	}
 
 }
