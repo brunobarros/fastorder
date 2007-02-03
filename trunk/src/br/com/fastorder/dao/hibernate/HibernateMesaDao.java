@@ -12,6 +12,8 @@ import br.com.fastorder.model.Mesa;
  */
 public class HibernateMesaDao extends HibernateGenericDao<Mesa, Long> implements MesaDao {
 
+	private static final long serialVersionUID = 8424249316922792058L;
+
 	public HibernateMesaDao(Session session) {
 		super(Mesa.class, session);
 	}

@@ -17,7 +17,7 @@ import br.com.fastorder.dao.GenericDao;
  *
  */
 public abstract class HibernateGenericDao<PersistentObject, PK extends Serializable>
-		implements GenericDao<PersistentObject, PK> {
+		implements GenericDao<PersistentObject, PK>, Serializable {
 
 	protected Session session;
 
@@ -28,6 +28,7 @@ public abstract class HibernateGenericDao<PersistentObject, PK extends Serializa
 		this.session = session;
 	}
 
+	@SuppressWarnings("unchecked")
 	public PersistentObject get(PK id) throws DaoException {
 		try {
 			return (PersistentObject) session.get(objectClass, id);
@@ -75,6 +76,7 @@ public abstract class HibernateGenericDao<PersistentObject, PK extends Serializa
 		return listAll().size();
 	}
 
+	@SuppressWarnings("unchecked")
 	public Collection<PersistentObject> findByExample(PersistentObject object)
 			throws DaoException {
 		try {
@@ -92,6 +94,7 @@ public abstract class HibernateGenericDao<PersistentObject, PK extends Serializa
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	public Collection<PersistentObject> findByExample(PersistentObject object,
 			int firstResult, int maxResults) throws DaoException {
 		try {
@@ -112,6 +115,7 @@ public abstract class HibernateGenericDao<PersistentObject, PK extends Serializa
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	public Collection<PersistentObject> listAll() throws DaoException {
 		try {
 			Criteria criteria = session.createCriteria(objectClass);
@@ -122,6 +126,7 @@ public abstract class HibernateGenericDao<PersistentObject, PK extends Serializa
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	public Collection<PersistentObject> listAll(int firstResult, int maxResults)
 			throws DaoException {
 		try {

@@ -4,7 +4,7 @@
 <beans default-autowire="autodetect">
 
     <!-- hibernate session -->
-    <bean id="sessionFactory" class="br.com.fastorder.hibernate.HibernateSessionFactory" singleton="false" />
+    <bean id="sessionFactory" class="br.com.fastorder.hibernate.HibernateSessionFactory" singleton="true" />
     
     <bean id="session" class="org.hibernate.Session" factory-bean="sessionFactory" factory-method="getSession" singleton="false" />
     
