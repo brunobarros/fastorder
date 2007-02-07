@@ -75,4 +75,16 @@ public class Produto implements Serializable {
 		return preco;
 	}
 
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public TipoProduto getTipo() {
+		return tipo;
+	}
+
 }

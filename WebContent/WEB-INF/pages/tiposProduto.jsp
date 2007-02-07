@@ -8,7 +8,7 @@
 	<link rel="stylesheet" href="css/style.css" type="text/css" />	
 	<script type="text/javascript" src="js/grid.js"></script>	
 	<script type="text/javascript" src="js/ajax.js"></script>	
-	<title>FastOrder</title>
+	<title>FastOrder - Tipos de Produtos</title>
 </head>
 <body onload="stripe('list', '#fff', '#edf3fe');">
 
@@ -51,7 +51,7 @@
 	<b class="rbottom"><b class="r4"></b><b class="r3"></b><b class="r2"></b><b class="r1"></b></b>
 	
 	<ul style="list-style: none; padding: 0px;">
-		<li><input type="button" class="button" onclick="load('tipoProduto.novo.action', 'actions');" value="Novo" /></li>
+		<li><input type="button" class="button" onclick="load('tipoProduto.novo.action', 'actions');" value="Novo tipo" /></li>
 	</ul>
 
 </body>

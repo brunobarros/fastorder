@@ -13,7 +13,7 @@ drop table if exists tipo_produto
 drop table if exists usuario
 create table conta (id bigint not null auto_increment, dataAbertura datetime not null, dataFechamento datetime, mesa_id bigint not null, primary key (id))
 create table mesa (id bigint not null, primary key (id))
-create table pedido (id bigint not null auto_increment, data datetime not null, observacoes text, usuario_login varchar(255) not null, conta_id bigint not null, primary key (id))
+create table pedido (id bigint not null auto_increment, data datetime not null, observacoes text, conta_id bigint not null, usuario_login varchar(255) not null, primary key (id))
 create table pedido_produtos (pedido_id bigint not null, qtd_produtos integer not null, produto_id bigint, primary key (pedido_id, produto_id))
 create table produto (id bigint not null auto_increment, descricao varchar(255) not null, preco numeric(19,2), tipo_id bigint not null, primary key (id))
 create table tipo_produto (id bigint not null auto_increment, descricao varchar(255), primary key (id))
