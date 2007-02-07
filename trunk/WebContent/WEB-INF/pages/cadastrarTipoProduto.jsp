@@ -1,5 +1,3 @@
-<%@ taglib prefix="ww" uri="/webwork"%>
-
 <h3>Cadastrar Tipo de Produto</h3>
 
 <form method="post" action="tipoProduto.cadastrar.action">

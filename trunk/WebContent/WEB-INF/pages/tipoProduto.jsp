@@ -15,6 +15,7 @@
 			<td align="right" colspan="2">
 				<input type="submit" class="button" value="Atualizar" />
 				<input type="button" class="button" value="Excluir" onclick="window.location = 'tipoProduto.excluir.action?tipoProduto.id=<ww:property value="tipoProduto.id" />'" />
+				<input type="button" class="button" value="Cancelar" onclick="window.location = 'tipoProduto.listar.action'" />
 			</td>			
 		</tr>
 	</table>

@@ -15,5 +15,7 @@
 	
 	<jsp:include page="menu.jsp" />
 
+	<!--<jsp:include page="login.jsp" />-->
+
 </body>
 </html>
