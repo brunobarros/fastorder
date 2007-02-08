@@ -87,4 +87,20 @@ public class Produto implements Serializable {
 		return tipo;
 	}
 
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public void setPreco(BigDecimal preco) {
+		this.preco = preco;
+	}
+
+	public void setTipo(TipoProduto tipo) {
+		this.tipo = tipo;
+	}
+
 }
