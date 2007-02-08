@@ -56,23 +56,23 @@
             <result name="error" type="chain" >tipoProduto.listar</result>            
         </action>                              
         
-        <action name="produto.listar" method="list" class="br.com.fastorder.action.ProdutoAction">
-        	<interceptor-ref name="appStack" />
-        	<result name="success" type="dispatcher">/WEB-INF/pages/produtos.jsp</result>
-        </action>
-        
-        <action name="produto.novo">      
-        	<interceptor-ref name="appStack" />        
-            <result name="success" type="dispatcher" >/WEB-INF/pages/cadastrarProduto.jsp</result>
-        </action>
-        
-        <action name="produto.cadastrar" method="insert" class="br.com.fastorder.action.ProdutoAction">      
-        	<interceptor-ref name="appStack" />        
-            <result name="success" type="chain" >produto.listar</result>
-            <result name="error" type="chain" >produto.listar</result>
-            <result name="input" type="chain" >produto.listar</result>
-        </action>
-        
+		<action name="produto.listar" method="list" class="br.com.fastorder.action.ProdutoAction">
+			<interceptor-ref name="appStack" />
+			<result name="success" type="dispatcher">/WEB-INF/pages/produtos.jsp</result>
+		</action>
+		
+		<action name="produto.novo">      
+			<interceptor-ref name="appStack" />        
+		    <result name="success" type="dispatcher" >/WEB-INF/pages/cadastrarProduto.jsp</result>
+		</action>
+		
+		<action name="produto.cadastrar" method="insert" class="br.com.fastorder.action.ProdutoAction">      
+			<interceptor-ref name="appStack" />        
+		    <result name="success" type="chain" >produto.listar</result>
+		    <result name="error" type="chain" >produto.listar</result>
+		    <result name="input" type="chain" >produto.listar</result>
+		</action>
+	
 	</package>
-
+	
 </xwork>
