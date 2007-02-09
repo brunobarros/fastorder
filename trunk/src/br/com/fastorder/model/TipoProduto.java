@@ -28,6 +28,7 @@ public class TipoProduto implements Serializable {
 	@GeneratedValue
 	private Long id;
 	
+	@NotNull
 	private String descricao;
 	
 	@OneToMany(mappedBy = "tipo", cascade = CascadeType.ALL)
