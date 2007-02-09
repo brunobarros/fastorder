@@ -7,7 +7,7 @@
 		<td><input type="text" name="produto.descricao" size="50" /></td>
 	</tr>
 	<tr>
-		<td>Preço:</td>
+		<td>Preço (R$):</td>
 		<td><input type="text" name="produto.preco" size="7" /></td>
 	</tr>
 	<tr>
