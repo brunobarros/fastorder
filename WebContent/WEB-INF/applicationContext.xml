@@ -3,12 +3,23 @@
 
 <beans default-autowire="autodetect">
 
+	<!--  actions -->
+    <bean id="usuarioAction" class="br.com.fastorder.action.UsuarioAction" singleton="false" />	
+	
+    <bean id="tipoProdutoAction" class="br.com.fastorder.action.TipoProdutoAction" singleton="false" />
+    
+    <bean id="produtoAction" class="br.com.fastorder.action.ProdutoAction" singleton="false" />    
+
     <!-- hibernate session -->
-    <bean id="sessionFactory" class="br.com.fastorder.hibernate.HibernateSessionFactory" singleton="true" />
+    <bean id="sessionFactory" class="br.com.fastorder.hibernate.HibernateSessionFactory" singleton="false" />
     
     <bean id="session" class="org.hibernate.Session" factory-bean="sessionFactory" factory-method="getSession" singleton="false" />
     
     <!-- dao -->
+    <bean id="usuarioDao" class="br.com.fastorder.dao.hibernate.HibernateUsuarioDao" singleton="false">
+    	<constructor-arg ref="session" />
+    </bean>
+        
     <bean id="contaDao" class="br.com.fastorder.dao.hibernate.HibernateContaDao" singleton="false">
     	<constructor-arg ref="session" />
     </bean>

@@ -14,7 +14,7 @@ try{
 
 function load(link, div){
     var conteudo = document.getElementById(div);
-    conteudo.innerHTML = '<div id="loading"><img src="images/ajax-loader.gif" /></div>';
+    conteudo.innerHTML = '<div id="loading"><img src="../images/ajax-loader.gif" /></div>';
     xmlhttp.open("GET", link ,true);
 
     xmlhttp.onreadystatechange=function() {

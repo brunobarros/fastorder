@@ -15,39 +15,36 @@ import org.hibernate.cfg.Configuration;
  *
  */
 public class HibernateSessionFactory implements Serializable {
-		
+
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -8089123533888251851L;
+	private static final long serialVersionUID = -8852110623931290107L;
 
 	/**
 	 * Session Factory.
 	 */
-	private final SessionFactory sessionFactory;
+	private static final SessionFactory sessionFactory;
 	
 	/**
 	 * Session Thread.
 	 */
-	private final ThreadLocal<Session> threadSession = new ThreadLocal<Session>();
+	private static final ThreadLocal<Session> threadSession = new ThreadLocal<Session>();
 	
 	/**
 	 * Transaction Thread.
 	 */
-	private final ThreadLocal<Transaction> threadTransaction = new ThreadLocal<Transaction>();
+	private static ThreadLocal<Transaction> threadTransaction = new ThreadLocal<Transaction>();
 	
 	/**
 	 * Configuration.
 	 */
-	private final Configuration cfg;
+	private static final Configuration cfg;
 	
-	/**
-	 * 
-	 */
-	public HibernateSessionFactory() {
+	static {
 		cfg = new AnnotationConfiguration();
 		cfg.configure();
-		sessionFactory = cfg.buildSessionFactory();
+        sessionFactory = cfg.buildSessionFactory();
 	}
 	
 	/**

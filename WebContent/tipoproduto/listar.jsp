@@ -5,16 +5,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-	<link rel="stylesheet" href="css/style.css" type="text/css" />	
-	<script type="text/javascript" src="js/grid.js"></script>	
-	<script type="text/javascript" src="js/ajax.js"></script>	
+	<link rel="stylesheet" href="../css/style.css" type="text/css" />	
+	<script type="text/javascript" src="../js/grid.js"></script>	
+	<script type="text/javascript" src="../js/ajax.js"></script>	
 	<title>FastOrder - Tipos de Produtos</title>
 </head>
 <body onload="stripe('list', '#fff', '#edf3fe');">
 
 	<h1>Fast Order</h1>
 	
-	<jsp:include page="menu.jsp" />
+	<jsp:include page="../includes/menu.jsp" />
 	
 	<div id="actions" style="margin-bottom: 20px;">
 	</div>
@@ -35,7 +35,7 @@
 		<tbody>
 			<ww:if test="tiposProduto.size() > 0">
 				<ww:iterator value="tiposProduto">
-					<tr onclick="load('tipoProduto.carregar.action?tipoProduto.id=<ww:property value="id" />', 'actions');">
+					<tr onclick="load('<ww:url action="carregar" namespace="/tipoproduto" includeParams="none" />?tipoProduto.id=<ww:property value='id' />', 'actions');">
 						<td style="text-align: center;"><ww:property value="id" /></td>
 						<td><ww:property value="descricao" /></td>
 					</tr>
@@ -51,7 +51,7 @@
 	<b class="rbottom"><b class="r4"></b><b class="r3"></b><b class="r2"></b><b class="r1"></b></b>
 	
 	<ul style="list-style: none; padding: 0px;">
-		<li><input type="button" class="button" onclick="load('tipoProduto.novo.action', 'actions');" value="Novo tipo" /></li>
+		<li><input type="button" class="button" onclick="load('<ww:url action="novo" namespace="/tipoproduto" includeParams="none" />', 'actions');" value="Novo tipo" /></li>
 	</ul>
 
 </body>

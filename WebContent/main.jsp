@@ -13,9 +13,7 @@
 	
 	<h1>Fast Order</h1>
 	
-	<jsp:include page="menu.jsp" />
-
-	<!--<jsp:include page="login.jsp" />-->
-
+	<jsp:include page="includes/menu.jsp" />
+	
 </body>
 </html>

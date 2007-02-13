@@ -3,76 +3,51 @@
 <xwork>
     <include file="webwork-default.xml"/>    
 
-    <package name="default" extends="webwork-default">    
+    <package name="default" extends="webwork-default" namespace="/">    
     
     	<interceptors>
-    	
+
+    		<interceptor name="permission" class="br.com.fastorder.interceptor.PermissionInterceptor"/>
+    		    	
     		<interceptor name="transaction" class="br.com.fastorder.interceptor.TransactionInterceptor"/>
+    		
+    		<interceptor-stack name="publicStack">
+    			<interceptor-ref name="defaultStack" />
+    			<interceptor-ref name="transaction" />   			
+    		</interceptor-stack>
     		
     		<interceptor-stack name="appStack">
     			<interceptor-ref name="defaultStack" />
-    			<interceptor-ref name="transaction" />    			
+    			<interceptor-ref name="permission" />    			
+    			<interceptor-ref name="transaction" />   			
     		</interceptor-stack>
     	
     	</interceptors>
-
-        <action name="main">      
-            <result type="dispatcher" >/WEB-INF/pages/main.jsp</result>
-        </action>			
         
-        <action name="tipoProduto.listar" method="list" class="br.com.fastorder.action.TipoProdutoAction">
-        	<interceptor-ref name="appStack" />
-            <result name="success" type="dispatcher" >/WEB-INF/pages/tiposProduto.jsp</result>
+        <global-results>
+        	<result name="login" type="dispatcher">login.jsp</result>
+        </global-results>  
+        
+		<action name="main">
+			<interceptor-ref name="permission" />
+            <result type="dispatcher" >main.jsp</result>
         </action>
         
-        <action name="tipoProduto.novo">      
-        	<interceptor-ref name="appStack" />        
-            <result name="success" type="dispatcher" >/WEB-INF/pages/cadastrarTipoProduto.jsp</result>
+        <action name="login" method="login" class="usuarioAction">
+	        <interceptor-ref name="publicStack" />
+        	<result name="success" type="dispatcher">main.jsp</result>
+        	<result name="input" type="dispatcher">login.jsp</result>
+        	<result name="error" type="dispatcher">login.jsp</result>        	        	
         </action>
         
-        <action name="tipoProduto.carregar" method="load" class="br.com.fastorder.action.TipoProdutoAction">      
-        	<interceptor-ref name="appStack" />        
-            <result name="success" type="dispatcher" >/WEB-INF/pages/tipoProduto.jsp</result>
-            <result name="error" type="chain" >tipoProduto.listar</result>            
-        </action>        
-        
-        <action name="tipoProduto.cadastrar" method="insert" class="br.com.fastorder.action.TipoProdutoAction">      
-        	<interceptor-ref name="appStack" />        
-            <result name="success" type="chain" >tipoProduto.listar</result>
-            <result name="error" type="chain" >tipoProduto.listar</result>
-            <result name="input" type="chain" >tipoProduto.listar</result>
-        </action>
-        
-        <action name="tipoProduto.atualizar" method="update" class="br.com.fastorder.action.TipoProdutoAction">      
-        	<interceptor-ref name="appStack" />        
-            <result name="success" type="chain" >tipoProduto.listar</result>
-            <result name="error" type="chain" >tipoProduto.listar</result>
-            <result name="input" type="chain" >tipoProduto.listar</result>                        
-        </action>
-        
-        <action name="tipoProduto.excluir" method="delete" class="br.com.fastorder.action.TipoProdutoAction">      
-        	<interceptor-ref name="appStack" />        
-            <result name="success" type="chain" >tipoProduto.listar</result>
-            <result name="error" type="chain" >tipoProduto.listar</result>            
-        </action>                              
-        
-		<action name="produto.listar" method="list" class="br.com.fastorder.action.ProdutoAction">
-			<interceptor-ref name="appStack" />
-			<result name="success" type="dispatcher">/WEB-INF/pages/produtos.jsp</result>
-		</action>
-		
-		<action name="produto.novo">      
-			<interceptor-ref name="appStack" />        
-		    <result name="success" type="dispatcher" >/WEB-INF/pages/cadastrarProduto.jsp</result>
-		</action>
-		
-		<action name="produto.cadastrar" method="insert" class="br.com.fastorder.action.ProdutoAction">      
-			<interceptor-ref name="appStack" />        
-		    <result name="success" type="chain" >produto.listar</result>
-		    <result name="error" type="chain" >produto.listar</result>
-		    <result name="input" type="chain" >produto.listar</result>
-		</action>
+        <action name="logoff" method="logoff" class="usuarioAction">
+        	<result name="success" type="dispatcher">login.jsp</result>        	        	
+        </action>                                     
 	
 	</package>
+	
+	<include file="xwork-tipo-produto.xml" />
+	
+	<include file="xwork-produto.xml" />
 	
 </xwork>
