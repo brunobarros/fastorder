@@ -12,21 +12,11 @@
 	
 	<h1>Fast Order</h1>
 	
-	<form method="post" action="<ww:url action="entrar" namespace="/usuario"  includeParams="none" />">
-		<table>
-			<tr>
-				<td>Login:</td>
-				<td><input type="text" name="usuario.login" /></td>
-			</tr>
-			<tr>
-				<td>Senha:</td>
-				<td><input type="password" name="senha" /></td>
-			</tr>
-			<tr>
-				<td align="right" colspan="2"><input class="button" type="submit" value="Conectar" /></td>
-			</tr>						
-		</table>
-	</form>
+	<ww:form method="post" action="entrar" namespace="/usuario" validate="true">
+		<ww:textfield label="Login" name="usuario.login" />
+		<ww:password label="Senha" name="senha" />
+		<ww:submit cssClass="button" value="Conectar" />
+	</ww:form>
 	
 	<ww:actionerror />
 	
