@@ -50,9 +50,21 @@
 	</table>
 	<b class="rbottom"><b class="r4"></b><b class="r3"></b><b class="r2"></b><b class="r1"></b></b>
 	
+	<ww:if test="index.size() > 1">
+		<p>
+			<ww:iterator value="index">
+				<ww:if test="value == currentItem"><ww:property value="key" />&nbsp;</ww:if>
+				<ww:else><a href="<ww:url action="listar" namespace="/tipoproduto" includeParams="none" />?currentItem=<ww:property value="value" />"><ww:property value="key" /></a>&nbsp;</ww:else>
+			</ww:iterator>
+		</p>
+	</ww:if>
+		
 	<ul style="list-style: none; padding: 0px;">
-		<li><input type="button" class="button" onclick="load('<ww:url action="novo" namespace="/tipoproduto" includeParams="none" />', 'actions');" value="Novo tipo" /></li>
+		<li style="display: inline;"><input type="button" class="button" onclick="load('<ww:url action="novo" namespace="/tipoproduto" includeParams="none" />', 'actions');" value="Novo Tipo" /></li>
+		<li style="display: inline;"><input type="button" class="button" value="Buscar" /></li>
 	</ul>
 
+	<jsp:include page="../includes/footer.jsp" />
+	
 </body>
 </html>

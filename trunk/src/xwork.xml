@@ -16,6 +16,11 @@
     			<interceptor-ref name="transaction" />   			
     		</interceptor-stack>
     		
+    		<interceptor-stack name="permissionStack">
+    			<interceptor-ref name="defaultStack" />
+    			<interceptor-ref name="permission" />   			
+    		</interceptor-stack>    		
+    		
     		<interceptor-stack name="appStack">
     			<interceptor-ref name="defaultStack" />
     			<interceptor-ref name="permission" />    			
@@ -24,28 +29,17 @@
     	
     	</interceptors>
         
-        <global-results>
-        	<result name="login" type="dispatcher">login.jsp</result>
-        </global-results>  
-        
-		<action name="main">
-			<interceptor-ref name="permission" />
-            <result type="dispatcher" >main.jsp</result>
-        </action>
-        
-        <action name="login" method="login" class="usuarioAction">
-	        <interceptor-ref name="publicStack" />
-        	<result name="success" type="dispatcher">main.jsp</result>
-        	<result name="input" type="dispatcher">login.jsp</result>
-        	<result name="error" type="dispatcher">login.jsp</result>        	        	
-        </action>
-        
-        <action name="logoff" method="logoff" class="usuarioAction">
-        	<result name="success" type="dispatcher">login.jsp</result>        	        	
-        </action>                                     
+        <global-results >
+        	<result name="login" type="redirect-action">
+        		<param name="actionName">login</param>
+        		<param name="namespace">/usuario</param>        		
+        	</result>
+        </global-results>
 	
 	</package>
-	
+
+	<include file="xwork-usuario.xml" />
+		
 	<include file="xwork-tipo-produto.xml" />
 	
 	<include file="xwork-produto.xml" />

@@ -8,7 +8,7 @@
 			<td>Descrição:</td>
 			<td>
 				<input type="hidden" name="tipoProduto.id" value="<ww:property value="tipoProduto.id" />" />
-				<input type="text" name="tipoProduto.descricao" value="<ww:property value="tipoProduto.descricao" />" />
+				<input type="text" name="tipoProduto.descricao" size="50" value="<ww:property value="tipoProduto.descricao" />" />
 			</td>
 		</tr>
 		<tr>

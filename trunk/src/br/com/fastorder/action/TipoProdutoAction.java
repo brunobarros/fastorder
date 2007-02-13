@@ -1,6 +1,8 @@
 package br.com.fastorder.action;
 
 import java.util.Collection;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 import br.com.fastorder.dao.DaoException;
 import br.com.fastorder.dao.ObjetoNaoEncontradoException;
@@ -19,8 +21,32 @@ public class TipoProdutoAction extends ActionSupport {
 	
 	private TipoProdutoDao tipoProdutoDao;
 	
+	private Integer currentItem = 0;
+	
+	private final Integer MAX_RESULTS = 10;
+	
+	private Map<Integer, Integer> index;
+	
+	private Integer total;
+	
+	private void createIndex() throws DaoException {				
+		index = new LinkedHashMap<Integer, Integer>();
+		
+		int count = 0;
+		for (int i = 0; i < total; i += MAX_RESULTS) {
+			index.put(++count, i);
+		}		
+	}
+	
 	public String list() throws DaoException {
-		tiposProduto = tipoProdutoDao.listAll();
+		total = tipoProdutoDao.listAllPageCount();
+		
+		if (currentItem > total) {
+			currentItem = 0;
+		}
+		
+		tiposProduto = tipoProdutoDao.listAll(currentItem, MAX_RESULTS);
+		createIndex();
 		return SUCCESS;
 	}
 	
@@ -63,25 +89,28 @@ public class TipoProdutoAction extends ActionSupport {
 		return SUCCESS;
 	}	
 
-	/**
-	 * @return the tipoProduto
-	 */
 	public TipoProduto getTipoProduto() {
 		return tipoProduto;
 	}
 
-	/**
-	 * @return the tiposProduto
-	 */
 	public Collection<TipoProduto> getTiposProduto() {
 		return tiposProduto;
 	}
 
-	/**
-	 * @param tipoProdutoDao the tipoProdutoDao to set
-	 */
 	public void setTipoProdutoDao(TipoProdutoDao tipoProdutoDao) {
 		this.tipoProdutoDao = tipoProdutoDao;
+	}
+
+	public void setCurrentItem(Integer currentItem) {
+		this.currentItem = currentItem;
+	}
+	
+	public Integer getCurrentItem() {
+		return currentItem;
+	}
+
+	public Map<Integer, Integer> getIndex() {
+		return index;
 	}
 
 }

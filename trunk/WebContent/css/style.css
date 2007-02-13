@@ -123,13 +123,7 @@ h3 {
     margin: 0px; list-style: none; padding: 0px;
 }
 #menu li {
-    padding-left: 20px; display: inline;
-}
-.infoBox1 {
-	border-style: solid; border-width: 1px; border-color: #090; background-color: #edf3fe; text-align:left; margin-top: 5px; margin-bottom: 5px; padding-left: 20px; padding-right: 20px; padding-bottom: 10px; padding-top: 10px; border: 1px solid #a0a0a0;
-}
-.infoBox1 img {
-	padding-right: 20px;
+    padding-right: 20px; display: inline;
 }
 #user {
 	right: 70px;
@@ -159,44 +153,6 @@ b.r2{margin: 0 3px}
 b.r3{margin: 0 2px}
 b.rtop b.r4, b.rbottom b.r4{margin: 0 1px;height: 2px}
 
-/*             styles for the star rater                */
-.star-rating{
-	list-style:none;
-	margin: 0px;
-	padding: 0px;
-	width: 18px;
-	height: 20px;
-	position: relative;
-	background: url(../images/star_rating.gif) top left repeat-x;		
-}
-.star-rating li{
-	padding:0px;
-	margin:0px;
-	/*\*/
-	float: left;
-	/* */
-}
-.star-rating li a{
-	display:block;
-	width:20px;
-	height: 20px;
-	text-decoration: none;
-	text-indent: -9000px;
-	z-index: 20;
-	position: absolute;
-	padding: 0px;
-}
-.star-rating li a:hover{
-	background: url(../images/star_rating.gif) left bottom;
-	z-index: 1;
-	left: 0px;
-}
-.star-rating a.one-star{
-	left: 0px;
-}
-.star-rating a.one-star:hover{
-	width:20px;
-}
 #loading img {
 	position: absolute; right: 10px; top: 10px;
 }
