@@ -41,11 +41,7 @@
 						<td style="text-align: center;"><ww:property value="id" /></td>
 						<td><ww:property value="descricao" /></td>
 						<td><ww:property value="tipo.descricao" /></td>							
-						<td>
-							<ww:text name="format.preco"> 
-							    <ww:param value="preco" />
-							</ww:text>
-						</td>
+						<td>R$ <ww:text name="format.preco"><ww:param value="preco" /></ww:text></td>
 					</tr>
 				</ww:iterator>
 			</ww:if>	

@@ -12,7 +12,7 @@
 		</tr>
 		<tr>
 			<td>Preço:</td>
-			<td><input type="text" name="produto.preco" size="7" value="<ww:property value="produto.preco" />" /></td>
+			<td><input type="text" name="produto.preco" size="7" value="<ww:text name="format.preco"><ww:param value="produto.preco" /></ww:text>" /></td>
 		</tr>
 		<tr>
 			<td>Tipo:</td>

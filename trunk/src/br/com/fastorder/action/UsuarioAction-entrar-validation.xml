@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE validators PUBLIC "-//OpenSymphony Group//XWork Validator 1.0//EN" "http://www.opensymphony.com/xwork/xwork-validator-1.0.dtd">
+
+<validators>
+    <field name="usuario.login">
+        <field-validator type="stringlength">
+			<param name="minLength">3</param>            
+			<param name="maxLength">16</param>
+			<message>O login deve ter entre 3 e 16 caracteres</message>
+        </field-validator>
+    </field>
+    <field name="senha">
+        <field-validator type="stringlength">
+			<param name="minLength">4</param>
+			<param name="maxLength">16</param>
+			<message>A senha deve ter entre 4 e 16 caracteres</message>
+        </field-validator>        
+    </field>
+</validators> 
