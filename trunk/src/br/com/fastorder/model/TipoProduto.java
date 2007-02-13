@@ -11,8 +11,6 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import org.hibernate.validator.NotNull;
-
 /**
  * 
  * @author Diogo Cabral de Almeida
@@ -28,7 +26,6 @@ public class TipoProduto implements Serializable {
 	@GeneratedValue
 	private Long id;
 	
-	@NotNull
 	private String descricao;
 	
 	@OneToMany(mappedBy = "tipo", cascade = CascadeType.ALL)

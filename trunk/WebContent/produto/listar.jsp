@@ -5,16 +5,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-	<link rel="stylesheet" href="css/style.css" type="text/css" />	
-	<script type="text/javascript" src="js/grid.js"></script>	
-	<script type="text/javascript" src="js/ajax.js"></script>
+	<link rel="stylesheet" href="../css/style.css" type="text/css" />	
+	<script type="text/javascript" src="../js/grid.js"></script>	
+	<script type="text/javascript" src="../js/ajax.js"></script>
 	<title>FastOrder - Produtos</title>
 </head>
 <body onload="stripe('list', '#fff', '#edf3fe');">
 
 	<h1>Fast Order</h1>
 	
-	<jsp:include page="menu.jsp" />
+	<jsp:include page="../includes/menu.jsp" />
 	
 	<div id="actions" style="margin-bottom: 20px;">
 	</div>
@@ -29,19 +29,19 @@
 		<thead>
 			<tr>
 				<th style="width: 50px; text-align: center;">Id</th>
-				<th>Tipo</th>	
 				<th>Descrição</th>	
+				<th>Tipo</th>				
 				<th>Preço (R$)</th>	
 			</tr>
 		</thead>
 		<tbody>
 			<ww:if test="produtos.size() > 0">
 				<ww:iterator value="produtos">
-					<tr>
+					<tr onclick="load('<ww:url action="carregar" namespace="/produto" />?produto.id=<ww:property value="id" />', 'actions');">
 						<td style="text-align: center;"><ww:property value="id" /></td>
-						<td><ww:property value="tipo.descricao" /></td>
 						<td><ww:property value="descricao" /></td>
-						<td><ww:property value="preco" /></td>
+						<td><ww:property value="tipo.descricao" /></td>							
+						<td><ww:property value="preco" /></td>					
 					</tr>
 				</ww:iterator>
 			</ww:if>	
@@ -55,7 +55,7 @@
 	<b class="rbottom"><b class="r4"></b><b class="r3"></b><b class="r2"></b><b class="r1"></b></b>
 
 	<ul style="list-style: none; padding: 0px;">
-		<li><input type="button" class="button" onclick="load('produto.novo.action', 'actions');" value="Novo produto" /></li>
+		<li><input type="button" class="button" onclick="load('<ww:url action="novo" namespace="/produto" includeParams="none" />', 'actions');" value="Novo produto" /></li>
 	</ul>
 
 </body>

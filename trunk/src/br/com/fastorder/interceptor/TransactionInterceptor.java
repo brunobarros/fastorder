@@ -24,7 +24,7 @@ public class TransactionInterceptor implements Interceptor {
 
 	public String intercept(ActionInvocation actionInvocation) throws Exception {
 		String result = ActionSupport.ERROR;
-		
+				
 		try {
 			sessionFactory.beginTransaction();
 			result = actionInvocation.invoke();

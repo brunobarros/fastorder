@@ -31,6 +31,7 @@ public class TipoProdutoAction extends ActionSupport {
 			addActionError(e.getMessage());
 			return ERROR;
 		}
+
 		return SUCCESS;
 	}
 	
