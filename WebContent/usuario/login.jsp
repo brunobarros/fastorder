@@ -5,14 +5,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-	<link rel="stylesheet" href="css/style.css" type="text/css" />	
+	<link rel="stylesheet" href="../css/style.css" type="text/css" />	
 	<title>FastOrder</title>
 </head>
 <body>
 	
 	<h1>Fast Order</h1>
 	
-	<form method="post" action="<ww:url action="login" namespace="/"  includeParams="none" />">
+	<form method="post" action="<ww:url action="entrar" namespace="/usuario"  includeParams="none" />">
 		<table>
 			<tr>
 				<td>Login:</td>
@@ -29,6 +29,8 @@
 	</form>
 	
 	<ww:actionerror />
+	
+	<jsp:include page="../includes/footer.jsp" />
 	
 </body>
 </html>

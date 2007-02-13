@@ -1,2 +1,2 @@
-<% response.sendRedirect(request.getContextPath() + "/main.action"); %>
+<% response.sendRedirect(request.getContextPath() + "/usuario/main.action"); %>
 

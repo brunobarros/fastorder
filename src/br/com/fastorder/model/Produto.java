@@ -30,12 +30,10 @@ public class Produto implements Serializable {
 	@GeneratedValue
 	private Long id;
 	
-	@NotNull
 	private String descricao;
 	
 	private BigDecimal preco;
 	
-	@NotNull
 	@ManyToOne
 	private TipoProduto tipo;
 	

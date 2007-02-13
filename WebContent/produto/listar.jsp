@@ -31,17 +31,21 @@
 				<th style="width: 50px; text-align: center;">Id</th>
 				<th>Descrição</th>	
 				<th>Tipo</th>				
-				<th>Preço (R$)</th>	
+				<th>Preço</th>	
 			</tr>
 		</thead>
 		<tbody>
 			<ww:if test="produtos.size() > 0">
 				<ww:iterator value="produtos">
-					<tr onclick="load('<ww:url action="carregar" namespace="/produto" />?produto.id=<ww:property value="id" />', 'actions');">
+					<tr onclick="load('<ww:url action="carregar" namespace="/produto" includeParams="none" />?produto.id=<ww:property value="id" />', 'actions');">
 						<td style="text-align: center;"><ww:property value="id" /></td>
 						<td><ww:property value="descricao" /></td>
 						<td><ww:property value="tipo.descricao" /></td>							
-						<td><ww:property value="preco" /></td>					
+						<td>
+							<ww:text name="format.preco"> 
+							    <ww:param value="preco" />
+							</ww:text>
+						</td>
 					</tr>
 				</ww:iterator>
 			</ww:if>	
@@ -53,10 +57,22 @@
 		</tbody>
 	</table>
 	<b class="rbottom"><b class="r4"></b><b class="r3"></b><b class="r2"></b><b class="r1"></b></b>
+	
+	<ww:if test="index.size() > 1">
+		<p>
+			<ww:iterator value="index">
+				<ww:if test="value == currentItem"><ww:property value="key" />&nbsp;</ww:if>
+				<ww:else><a href="<ww:url action="listar" namespace="/produto" includeParams="none" />?currentItem=<ww:property value="value" />"><ww:property value="key" /></a>&nbsp;</ww:else>
+			</ww:iterator>
+		</p>
+	</ww:if>
 
 	<ul style="list-style: none; padding: 0px;">
-		<li><input type="button" class="button" onclick="load('<ww:url action="novo" namespace="/produto" includeParams="none" />', 'actions');" value="Novo produto" /></li>
+		<li style="display: inline;"><input type="button" class="button" onclick="load('<ww:url action="novo" namespace="/produto" includeParams="none" />', 'actions');" value="Novo Produto" /></li>
+		<li style="display: inline;"><input type="button" class="button" value="Buscar" /></li>
 	</ul>
 
+	<jsp:include page="../includes/footer.jsp" />
+	
 </body>
 </html>
