@@ -1,7 +1,5 @@
 package br.com.fastorder.hibernate;
 
-import java.io.Serializable;
-
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -14,12 +12,7 @@ import org.hibernate.cfg.Configuration;
  * @author Diogo Cabral de Almeida
  *
  */
-public class HibernateSessionFactory implements Serializable {
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -8852110623931290107L;
+public class HibernateSessionFactory {
 
 	/**
 	 * Session Factory.
