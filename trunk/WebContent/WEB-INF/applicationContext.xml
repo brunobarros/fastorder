@@ -7,6 +7,8 @@
     <bean id="usuarioAction" class="br.com.fastorder.action.UsuarioAction" singleton="false" />	
 	
     <bean id="tipoProdutoAction" class="br.com.fastorder.action.TipoProdutoAction" singleton="false" />
+
+    <bean id="mesaAction" class="br.com.fastorder.action.MesaAction" singleton="false" />
     
     <bean id="produtoAction" class="br.com.fastorder.action.ProdutoAction" singleton="false" />    
 

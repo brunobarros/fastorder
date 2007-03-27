@@ -13,8 +13,8 @@
 	<h1>Fast Order</h1>
 	
 	<ww:form method="post" action="entrar" namespace="/usuario" validate="true">
-		<ww:textfield label="Login" name="usuario.login" />
-		<ww:password label="Senha" name="senha" />
+		<ww:textfield label="Login" name="usuario.login" value="admin" />
+		<ww:textfield label="Senha" name="senha" value="admin" />
 		<ww:submit cssClass="button" value="Conectar" />
 	</ww:form>
 	

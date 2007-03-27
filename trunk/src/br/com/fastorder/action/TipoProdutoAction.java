@@ -82,7 +82,7 @@ public class TipoProdutoAction extends ActionSupport {
 		try {
 			tipoProdutoDao.delete(tipoProduto);
 			addActionMessage("Tipo de produto excluído com sucesso");
-		} catch (ObjetoNaoEncontradoException e) {
+		} catch (Exception e) {
 			addActionError(e.getMessage());
 			return ERROR;
 		}
