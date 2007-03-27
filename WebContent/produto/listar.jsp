@@ -29,8 +29,8 @@
 		<thead>
 			<tr>
 				<th style="width: 50px; text-align: center;">Id</th>
-				<th>Descrição</th>	
 				<th>Tipo</th>				
+				<th>Descrição</th>	
 				<th>Preço</th>	
 			</tr>
 		</thead>
@@ -39,8 +39,8 @@
 				<ww:iterator value="produtos">
 					<tr onclick="load('<ww:url action="carregar" namespace="/produto" includeParams="none" />?produto.id=<ww:property value="id" />', 'actions');">
 						<td style="text-align: center;"><ww:property value="id" /></td>
-						<td><ww:property value="descricao" /></td>
 						<td><ww:property value="tipo.descricao" /></td>							
+						<td><ww:property value="descricao" /></td>
 						<td>R$ <ww:text name="format.preco"><ww:param value="preco" /></ww:text></td>
 					</tr>
 				</ww:iterator>
