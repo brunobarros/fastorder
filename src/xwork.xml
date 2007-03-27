@@ -44,4 +44,6 @@
 	
 	<include file="xwork-produto.xml" />
 	
+	<include file="xwork-mesa.xml" />
+	
 </xwork>
