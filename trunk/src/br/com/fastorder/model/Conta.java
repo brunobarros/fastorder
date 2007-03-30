@@ -71,6 +71,12 @@ public class Conta implements Serializable {
 		setDataFechamento(dataFechamento);
 	}
 
+	public Conta(Conta conta, Date dataAbertura) {
+		this(conta.getId(), 
+				conta.getPedidos(), conta.getMesa(), dataAbertura, 
+				conta.dataFechamento);
+	}
+
 	public boolean registrarPedido(Pedido pedido) {
 		if (wasAberta()) {
 			if (!isFechada()) {
