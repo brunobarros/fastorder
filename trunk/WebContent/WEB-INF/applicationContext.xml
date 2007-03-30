@@ -12,6 +12,8 @@
     
     <bean id="produtoAction" class="br.com.fastorder.action.ProdutoAction" singleton="false" />    
 
+    <bean id="contaAction" class="br.com.fastorder.action.ContaAction" singleton="false" />    
+
     <!-- hibernate session -->
     <bean id="sessionFactory" class="br.com.fastorder.hibernate.HibernateSessionFactory" singleton="true" />
     
