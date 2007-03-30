@@ -5,8 +5,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-	<!-- Refresh page after 5 seconds -->
-	<meta http-equiv="refresh" content="5" />	
+	<!-- Refresh page after X seconds -->
+	<meta http-equiv="refresh" content="10" />	
 	<link rel="stylesheet" href="../css/style.css" type="text/css" />	
 	<script type="text/javascript" src="../js/grid.js"></script>	
 	<script type="text/javascript" src="../js/ajax.js"></script>
@@ -23,8 +23,8 @@
 	
 	<h3>Contas</h3>
 	
-	<ul style="list-style: none; padding: 0px;">
-		<li style="display: inline;"><input type="button" class="button" onclick="load('<ww:url action="novo" namespace="/conta" includeParams="none" />', 'actions');" value="Abrir nova conta" /></li>
+	<ul style="list-style: none;">
+		<li><input type="button" class="button" onclick="location.href='<ww:url action="novo" namespace="/conta" includeParams="none" />';" value="Abrir nova conta" /></li>
 	</ul>
 	
 	<h4>Contas abertas</h4>
@@ -42,7 +42,7 @@
 										<b>Mesa:</b> <ww:property value="mesa.id" /><br />
 										<b>Data de abertura:</b> <ww:property value="dataAbertura" /><br />
 										<b>Consumo:</b> R$ <ww:property value="getValor()" /><br />
-										<input type="button" value="Adicionar pedido" /><br />
+										<input type="button" value="Adicionar pedido" onclick="alert('Não implementado.')" /><br />
 										<input type="button" value="Fechar conta" onclick="confirm('Deseja fechar esta conta? (Não implementado)');" /><br />
 									</div>	<br />
 								</li>
