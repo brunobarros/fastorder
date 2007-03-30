@@ -46,4 +46,6 @@
 	
 	<include file="xwork-mesa.xml" />
 	
+	<include file="xwork-conta.xml" />
+	
 </xwork>

@@ -156,3 +156,14 @@ b.rtop b.r4, b.rbottom b.r4{margin: 0 1px; height: 2px}
 #loading img {
 	position: absolute; right: 10px; top: 10px;
 }
+
+#conta {
+	border: 1px solid #a0a0a0;
+	border-top: 0px;
+	width: 300px;
+}
+
+#conta thead tr {
+	background-color: #467aa7;
+	color: #ffffff;
+}

@@ -55,8 +55,22 @@ public class Conta implements Serializable {
 	public Conta(Mesa mesa) {
 		super();
 		this.mesa = mesa;
-	}	
+	}
 	
+	public Conta(Date dataFechamento) {
+		super();
+		setDataFechamento(dataFechamento);
+	}
+	
+	public Conta(Long id, Set<Pedido> pedidos, Mesa mesa, Date dataAbertura, Date dataFechamento) {
+		super();
+		setId(id);
+		setPedidos(pedidos);
+		setMesa(mesa);
+		setDataAbertura(dataAbertura);
+		setDataFechamento(dataFechamento);
+	}
+
 	public boolean registrarPedido(Pedido pedido) {
 		if (wasAberta()) {
 			if (!isFechada()) {
@@ -149,5 +163,46 @@ public class Conta implements Serializable {
 
         return true;
 	}
+
+	public Date getDataAbertura() {
+		return dataAbertura;
+	}
+
+	public Date getDataFechamento() {
+		return dataFechamento;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public Mesa getMesa() {
+		return mesa;
+	}
+
+	public Set<Pedido> getPedidos() {
+		return pedidos;
+	}
+
+	public void setDataAbertura(Date dataAbertura) {
+		this.dataAbertura = dataAbertura;
+	}
+
+	public void setDataFechamento(Date dataFechamento) {
+		this.dataFechamento = dataFechamento;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public void setMesa(Mesa mesa) {
+		this.mesa = mesa;
+	}
+
+	public void setPedidos(Set<Pedido> pedidos) {
+		this.pedidos = pedidos;
+	}
+	
 
 }
