@@ -4,18 +4,23 @@ import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import org.springframework.transaction.annotation.Transactional;
+
+import com.opensymphony.xwork2.Action;
+import com.opensymphony.xwork2.ActionSupport;
+import com.opensymphony.xwork2.util.CreateIfNull;
+
 import br.com.fastorder.dao.DaoException;
 import br.com.fastorder.dao.ObjetoNaoEncontradoException;
 import br.com.fastorder.dao.TipoProdutoDao;
 import br.com.fastorder.model.TipoProduto;
 
-import com.opensymphony.xwork.ActionSupport;
-
 public class TipoProdutoAction extends ActionSupport {
 
 	private static final long serialVersionUID = 204100898395787598L;
 
-	private TipoProduto tipoProduto = new TipoProduto();
+	@CreateIfNull(value = true)
+	private TipoProduto tipoProduto;
 	
 	private Collection<TipoProduto> tiposProduto;
 	
@@ -38,6 +43,7 @@ public class TipoProdutoAction extends ActionSupport {
 		}		
 	}
 	
+	@Transactional
 	public String list() throws DaoException {
 		total = tipoProdutoDao.listAllPageCount();
 		
@@ -47,46 +53,50 @@ public class TipoProdutoAction extends ActionSupport {
 		
 		tiposProduto = tipoProdutoDao.listAll(currentItem, MAX_RESULTS);
 		createIndex();
-		return SUCCESS;
+		return Action.SUCCESS;
 	}
 	
+	@Transactional
 	public String load() throws DaoException {
 		try {
 			tipoProduto = tipoProdutoDao.get(tipoProduto.getId());
 		} catch (ObjetoNaoEncontradoException e) {
 			addActionError(e.getMessage());
-			return ERROR;
+			return Action.ERROR;
 		}
 
-		return SUCCESS;
+		return Action.SUCCESS;
 	}
 	
+	@Transactional
 	public String insert() throws DaoException {
-		tipoProdutoDao.save(tipoProduto);
+		tipoProduto = tipoProdutoDao.save(tipoProduto);
 		addActionMessage("Tipo de produto cadastrado com sucesso");
-		return SUCCESS;
+		return Action.SUCCESS;
 	}
 	
+	@Transactional
 	public String update() throws DaoException {
 		try {			
 			tipoProdutoDao.update(tipoProduto);
 		} catch (ObjetoNaoEncontradoException e) {
 			addActionError(e.getMessage());
-			return ERROR;
+			return Action.ERROR;
 		}
 		addActionMessage("Tipo de produto atualizado com sucesso");
-		return SUCCESS;
+		return Action.SUCCESS;
 	}
 	
+	@Transactional
 	public String delete() throws DaoException {
 		try {
 			tipoProdutoDao.delete(tipoProduto);
 			addActionMessage("Tipo de produto excluído com sucesso");
-		} catch (Exception e) {
+		} catch (ObjetoNaoEncontradoException e) {
 			addActionError(e.getMessage());
-			return ERROR;
+			return Action.ERROR;
 		}
-		return SUCCESS;
+		return Action.SUCCESS;
 	}	
 
 	public TipoProduto getTipoProduto() {
@@ -111,6 +121,10 @@ public class TipoProdutoAction extends ActionSupport {
 
 	public Map<Integer, Integer> getIndex() {
 		return index;
+	}
+
+	public void setTipoProduto(TipoProduto tipoProduto) {
+		this.tipoProduto = tipoProduto;
 	}
 
 }

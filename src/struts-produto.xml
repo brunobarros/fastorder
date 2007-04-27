@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	
+	<package name="produto" extends="default" namespace="/produto">
+		
+		<action name="listar" method="list" class="produtoAction">
+			<interceptor-ref name="permissionStack" />
+			<result name="success" type="dispatcher">listar.jsp</result>
+		</action>
+		
+		<action name="novo" method="prepare" class="produtoAction">      
+			<interceptor-ref name="permissionStack" />        
+		    <result name="success" type="dispatcher" >cadastrar.jsp</result>
+		</action>
+		
+		<action name="carregar" method="load" class="produtoAction">      
+			<interceptor-ref name="permissionStack" />        
+            <result name="success" type="dispatcher" >carregar.jsp</result>
+            <result name="error" type="chain" >
+            	<param name="actionName">listar</param>
+            </result>
+		</action>		
+		
+		<action name="cadastrar" method="insert" class="produtoAction">      
+			<interceptor-ref name="permissionStack" />        
+		    <result name="success" type="chain" >listar</result>
+		    <result name="error" type="chain" >listar</result>
+		    <result name="input" type="chain" >listar</result>
+		</action>		
+		
+		<action name="atualizar" method="update" class="produtoAction">      
+			<interceptor-ref name="permissionStack" />        
+		    <result name="success" type="chain" >listar</result>
+		    <result name="error" type="chain" >listar</result>
+		    <result name="input" type="chain" >listar</result>
+		</action>
+		
+		<action name="excluir" method="delete" class="produtoAction">      
+			<interceptor-ref name="permissionStack" />        
+		    <result name="success" type="chain" >listar</result>
+		    <result name="error" type="chain" >listar</result>
+		    <result name="input" type="chain" >listar</result>
+		</action>				
+		
+	</package>
+	
+</struts>

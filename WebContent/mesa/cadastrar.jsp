@@ -1,7 +1,7 @@
-<%@ taglib prefix="ww" uri="/webwork"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
 <h3>Cadastrar Mesa</h3>
 
-<form method="post" action="<ww:url action="cadastrar" namespace="/mesa" includeParams="none" />">
+<form method="post" action="<s:url action="cadastrar" namespace="/mesa" includeParams="none" />">
 <table id="form">
 	<tr>
 		<td>Número da mesa:</td>

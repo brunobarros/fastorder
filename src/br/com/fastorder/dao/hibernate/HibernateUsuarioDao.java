@@ -1,6 +1,6 @@
 package br.com.fastorder.dao.hibernate;
 
-import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 
 import br.com.fastorder.dao.UsuarioDao;
 import br.com.fastorder.model.Usuario;
@@ -9,8 +9,8 @@ public class HibernateUsuarioDao extends HibernateGenericDao<Usuario, String> im
 
 	private static final long serialVersionUID = -2882669096651249443L;
 	
-	public HibernateUsuarioDao(Session session) {
-		super(Usuario.class, session);
+	public HibernateUsuarioDao(SessionFactory sessionFactory) {
+		super(Usuario.class, sessionFactory);
 	}	
 
 }

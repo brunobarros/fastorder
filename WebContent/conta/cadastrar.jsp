@@ -1,4 +1,4 @@
-<%@ taglib prefix="ww" uri="/webwork"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -18,25 +18,25 @@
 
 	<h3>Abrir nova conta</h3>
 	
-	<ww:actionmessage/>
-	<ww:actionerror/>
+	<s:actionmessage/>
+	<s:actionerror/>
 	
-	<form method="post" action="<ww:url action="cadastrar" namespace="/conta"  includeParams="none" />">
+	<form method="post" action="<s:url action="cadastrar" namespace="/conta"  includeParams="none" />">
 	<table id="form">
 		<tr>
 			<td>Número da mesa:</td>
 			<td>
 				<select name="conta.mesa.id">
-					<ww:iterator value="mesas">
-						<option value="<ww:property value="id" />"><ww:property value="id" /></option>
-					</ww:iterator>
+					<s:iterator value="mesas">
+						<option value="<s:property value="id" />"><s:property value="id" /></option>
+					</s:iterator>
 				</select>
 			</td>
 		</tr>
 		<tr>
 			<td colspan="2" align="right">
 				<input class="button" type="submit" value="Abrir conta" />
-				<input type="button" class="button" value="Cancelar" onclick="window.location = '<ww:url action="listar" namespace="/conta"  includeParams="none" />'" />
+				<input type="button" class="button" value="Cancelar" onclick="window.location = '<s:url action="listar" namespace="/conta"  includeParams="none" />'" />
 			</td>
 		</tr>
 	</table>

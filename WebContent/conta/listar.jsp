@@ -1,4 +1,4 @@
-<%@ taglib prefix="ww" uri="/webwork"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -24,37 +24,37 @@
 	<h3>Contas</h3>
 	
 	<ul style="list-style: none;">
-		<li><input type="button" class="button" onclick="location.href='<ww:url action="novo" namespace="/conta" includeParams="none" />';" value="Abrir nova conta" /></li>
+		<li><input type="button" class="button" onclick="location.href='<s:url action="novo" namespace="/conta" includeParams="none" />';" value="Abrir nova conta" /></li>
 	</ul>
 	
 	<h4>Contas abertas</h4>
 	
-	<ww:actionmessage/>
-	<ww:actionerror/>
+	<s:actionmessage/>
+	<s:actionerror/>
 	
-				<ww:if test="contas.size() > 0">
+				<s:if test="contas.size() > 0">
 					<div id="menu">
 						<ul>
-							<ww:iterator value="contas">
+							<s:iterator value="contas">
 								<li>
 									<div style="width:275px; border: 1px solid #a0a0a0;">
-										<b>Id:</b> <ww:property value="id" /><br />
-										<b>Mesa:</b> <ww:property value="mesa.id" /><br />
-										<b>Data de abertura:</b> <ww:property value="dataAbertura" /><br />
-										<b>Consumo:</b> R$ <ww:property value="getValor()" /><br />
+										<b>Id:</b> <s:property value="id" /><br />
+										<b>Mesa:</b> <s:property value="mesa.id" /><br />
+										<b>Data de abertura:</b> <s:property value="dataAbertura" /><br />
+										<b>Consumo:</b> R$ <s:property value="getValor()" /><br />
 										<input type="button" value="Adicionar pedido" onclick="alert('Não implementado.')" /><br />
 										<input type="button" value="Fechar conta" onclick="confirm('Deseja fechar esta conta? (Não implementado)');" /><br />
 									</div>	<br />
 								</li>
-							</ww:iterator>
+							</s:iterator>
 						</ul>
 					</div>
-				</ww:if>	
-				<ww:else>
+				</s:if>	
+				<s:else>
 					<tr>
 						<td colspan="4">Nenhuma conta aberta.</td>
 					</tr>
-				</ww:else>
+				</s:else>
 	
 	<jsp:include page="../includes/footer.jsp" />
 	

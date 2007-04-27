@@ -5,11 +5,13 @@ import java.util.Collection;
 
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
-import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Example;
+import org.hibernate.criterion.Projections;
 
 import br.com.fastorder.dao.DaoException;
 import br.com.fastorder.dao.GenericDao;
+import br.com.fastorder.dao.ObjetoNaoEncontradoException;
 
 /**
  * 
@@ -19,19 +21,24 @@ import br.com.fastorder.dao.GenericDao;
 public abstract class HibernateGenericDao<PersistentObject, PK extends Serializable>
 		implements GenericDao<PersistentObject, PK>, Serializable {
 
-	protected Session session;
+	protected SessionFactory sessionFactory;
 
 	protected Class objectClass;
 
-	public HibernateGenericDao(Class objectClass, Session session) {
+	public HibernateGenericDao(Class objectClass, SessionFactory sessionFactory) {
 		this.objectClass = objectClass;
-		this.session = session;
+		this.sessionFactory = sessionFactory;
 	}
 
-	@SuppressWarnings("unchecked")
-	public PersistentObject get(PK id) throws DaoException {
+	public PersistentObject get(PK id) throws DaoException, ObjetoNaoEncontradoException {
 		try {
-			return (PersistentObject) session.get(objectClass, id);
+			 PersistentObject persistentObject = (PersistentObject) sessionFactory.getCurrentSession().get(objectClass, id);
+			 
+			 if (persistentObject == null) {
+				 throw new ObjetoNaoEncontradoException();
+			 }
+			 
+			 return persistentObject;
 		} catch (HibernateException e) {
 			throw new DaoException(e);
 		}
@@ -39,9 +46,9 @@ public abstract class HibernateGenericDao<PersistentObject, PK extends Serializa
 
 	public PersistentObject save(PersistentObject object) throws DaoException {
 		try {
-			session.save(object);
-			session.flush();
-
+			sessionFactory.getCurrentSession().save(object);
+			sessionFactory.getCurrentSession().flush();
+			
 			return object;
 		} catch (HibernateException e) {
 			throw new DaoException(e);
@@ -50,8 +57,8 @@ public abstract class HibernateGenericDao<PersistentObject, PK extends Serializa
 
 	public void update(PersistentObject object) throws DaoException {
 		try {
-			session.update(object);
-			session.flush();
+			sessionFactory.getCurrentSession().update(object);
+
 		} catch (HibernateException e) {
 			throw new DaoException(e);
 		}
@@ -59,28 +66,47 @@ public abstract class HibernateGenericDao<PersistentObject, PK extends Serializa
 
 	public void delete(PersistentObject object) throws DaoException {
 		try {
-			session.delete(object);
-			session.flush();
+			sessionFactory.getCurrentSession().delete(object);
+			sessionFactory.getCurrentSession().flush();
 		} catch (HibernateException e) {
 			throw new DaoException(e);
 		}
 	}
 
-	public int findByExamplePageCount(PersistentObject object)
-			throws DaoException {
-		return findByExample(object).size();
+	public int findByExamplePageCount(PersistentObject object) throws DaoException {
+		try {
+			Criteria criteria = sessionFactory.getCurrentSession().createCriteria(objectClass);
 
+			Example sample = Example.create(object);
+			sample.enableLike();
+			sample.excludeZeroes();
+
+			criteria.add(sample);
+			
+			criteria.setProjection(Projections.rowCount());
+
+			return (Integer) criteria.uniqueResult();
+		} catch (HibernateException e) {
+			throw new DaoException(e);
+		}
 	}
 
 	public int listAllPageCount() throws DaoException {
-		return listAll().size();
+		try {
+			Criteria criteria = sessionFactory.getCurrentSession().createCriteria(objectClass);
+			
+			criteria.setProjection(Projections.rowCount());
+			
+			return (Integer) criteria.uniqueResult();
+		} catch (HibernateException e) {
+			throw new DaoException(e);
+		}		
 	}
 
-	@SuppressWarnings("unchecked")
 	public Collection<PersistentObject> findByExample(PersistentObject object)
 			throws DaoException {
 		try {
-			Criteria criteria = session.createCriteria(objectClass);
+			Criteria criteria = sessionFactory.getCurrentSession().createCriteria(objectClass);
 
 			Example sample = Example.create(object);
 			sample.enableLike();
@@ -94,11 +120,10 @@ public abstract class HibernateGenericDao<PersistentObject, PK extends Serializa
 		}
 	}
 
-	@SuppressWarnings("unchecked")
 	public Collection<PersistentObject> findByExample(PersistentObject object,
 			int firstResult, int maxResults) throws DaoException {
 		try {
-			Criteria criteria = session.createCriteria(objectClass);
+			Criteria criteria = sessionFactory.getCurrentSession().createCriteria(objectClass);
 
 			Example sample = Example.create(object);
 			sample.enableLike();
@@ -115,10 +140,9 @@ public abstract class HibernateGenericDao<PersistentObject, PK extends Serializa
 		}
 	}
 
-	@SuppressWarnings("unchecked")
 	public Collection<PersistentObject> listAll() throws DaoException {
 		try {
-			Criteria criteria = session.createCriteria(objectClass);
+			Criteria criteria = sessionFactory.getCurrentSession().createCriteria(objectClass);
 
 			return criteria.list();
 		} catch (HibernateException e) {
@@ -126,11 +150,10 @@ public abstract class HibernateGenericDao<PersistentObject, PK extends Serializa
 		}
 	}
 
-	@SuppressWarnings("unchecked")
 	public Collection<PersistentObject> listAll(int firstResult, int maxResults)
 			throws DaoException {
 		try {
-			Criteria criteria = session.createCriteria(objectClass);
+			Criteria criteria = sessionFactory.getCurrentSession().createCriteria(objectClass);
 
 			criteria.setFirstResult(firstResult);
 			criteria.setMaxResults(maxResults);

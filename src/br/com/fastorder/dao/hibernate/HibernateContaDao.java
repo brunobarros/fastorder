@@ -1,11 +1,9 @@
 package br.com.fastorder.dao.hibernate;
 
-import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 
 import br.com.fastorder.dao.ContaDao;
-import br.com.fastorder.dao.DaoException;
 import br.com.fastorder.model.Conta;
-import br.com.fastorder.model.Mesa;
 
 /**
  * 
@@ -16,18 +14,8 @@ public class HibernateContaDao extends HibernateGenericDao<Conta, Long> implemen
 
 	private static final long serialVersionUID = 5043717230839340682L;
 
-	public HibernateContaDao(Session session) {
-		super(Conta.class, session);
-	}
-
-	public Conta getContaEmAberto(Mesa mesa) throws DaoException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public boolean hasContaEmAberto(Mesa mesa) throws DaoException {
-		// TODO Auto-generated method stub
-		return false;
+	public HibernateContaDao(SessionFactory sessionFactory) {
+		super(Conta.class, sessionFactory);
 	}
 
 }

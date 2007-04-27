@@ -1,4 +1,4 @@
-<%@ taglib prefix="ww" uri="/webwork"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -21,8 +21,8 @@
 	
 	<h3>Produtos</h3>
 	
-	<ww:actionmessage/>
-	<ww:actionerror/>
+	<s:actionmessage/>
+	<s:actionerror/>
 	
 	<b class="rtop"><b class="r1"></b><b class="r2"></b><b class="r3"></b><b class="r4"></b></b>
 	<table id="list" cellspacing="0">
@@ -35,36 +35,36 @@
 			</tr>
 		</thead>
 		<tbody>
-			<ww:if test="produtos.size() > 0">
-				<ww:iterator value="produtos">
-					<tr onclick="load('<ww:url action="carregar" namespace="/produto" includeParams="none" />?produto.id=<ww:property value="id" />', 'actions');">
-						<td style="text-align: center;"><ww:property value="id" /></td>
-						<td><ww:property value="tipo.descricao" /></td>							
-						<td><ww:property value="descricao" /></td>
-						<td>R$ <ww:text name="format.preco"><ww:param value="preco" /></ww:text></td>
+			<s:if test="produtos.size() > 0">
+				<s:iterator value="produtos">
+					<tr onclick="load('<s:url action="carregar" namespace="/produto" includeParams="none" />?produto.id=<s:property value="id" />', 'actions');">
+						<td style="text-align: center;"><s:property value="id" /></td>
+						<td><s:property value="tipo.descricao" /></td>							
+						<td><s:property value="descricao" /></td>
+						<td>R$ <s:text name="format.preco"><s:param name="value" value="preco" /></s:text></td>
 					</tr>
-				</ww:iterator>
-			</ww:if>	
-			<ww:else>
+				</s:iterator>
+			</s:if>	
+			<s:else>
 				<tr>
 					<td colspan="4">Nenhum produto cadastrado</td>
 				</tr>
-			</ww:else>
+			</s:else>
 		</tbody>
 	</table>
 	<b class="rbottom"><b class="r4"></b><b class="r3"></b><b class="r2"></b><b class="r1"></b></b>
 	
-	<ww:if test="index.size() > 1">
+	<s:if test="index.size() > 1">
 		<p>
-			<ww:iterator value="index">
-				<ww:if test="value == currentItem"><ww:property value="key" />&nbsp;</ww:if>
-				<ww:else><a href="<ww:url action="listar" namespace="/produto" includeParams="none" />?currentItem=<ww:property value="value" />"><ww:property value="key" /></a>&nbsp;</ww:else>
-			</ww:iterator>
+			<s:iterator value="index">
+				<s:if test="value == currentItem"><s:property value="key" />&nbsp;</s:if>
+				<s:else><a href="<s:url action="listar" namespace="/produto" includeParams="none" />?currentItem=<s:property value="value" />"><s:property value="key" /></a>&nbsp;</s:else>
+			</s:iterator>
 		</p>
-	</ww:if>
+	</s:if>
 
 	<ul style="list-style: none; padding: 0px;">
-		<li style="display: inline;"><input type="button" class="button" onclick="load('<ww:url action="novo" namespace="/produto" includeParams="none" />', 'actions');" value="Novo Produto" /></li>
+		<li style="display: inline;"><input type="button" class="button" onclick="load('<s:url action="novo" namespace="/produto" includeParams="none" />', 'actions');" value="Novo Produto" /></li>
 		<li style="display: inline;"><input type="button" class="button" value="Buscar" /></li>
 	</ul>
 

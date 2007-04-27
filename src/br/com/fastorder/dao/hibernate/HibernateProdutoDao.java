@@ -1,6 +1,6 @@
 package br.com.fastorder.dao.hibernate;
 
-import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 
 import br.com.fastorder.dao.ProdutoDao;
 import br.com.fastorder.model.Produto;
@@ -14,8 +14,8 @@ public class HibernateProdutoDao extends HibernateGenericDao<Produto, Long> impl
 
 	private static final long serialVersionUID = 5208691621404868354L;
 
-	public HibernateProdutoDao(Session session) {
-		super(Produto.class, session);
+	public HibernateProdutoDao(SessionFactory sessionFactory) {
+		super(Produto.class, sessionFactory);
 	}
 
 }

@@ -1,16 +1,27 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
-<!DOCTYPE web-app PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN" "http://java.sun.com/dtd/web-app_2_3.dtd">
-<web-app>
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app id="WebApp_9" version="2.4" 
+	xmlns="http://java.sun.com/xml/ns/j2ee" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
 
     <display-name>FastOrder</display-name>
+    
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>
+			/WEB-INF/applicationContext-hibernate.xml
+			/WEB-INF/applicationContext-dao.xml			
+			/WEB-INF/applicationContext-action.xml
+		</param-value>
+	</context-param>    
 
     <filter>
-        <filter-name>webwork</filter-name>
-        <filter-class>com.opensymphony.webwork.dispatcher.FilterDispatcher</filter-class>
-    </filter>
+        <filter-name>struts2</filter-name>
+        <filter-class>org.apache.struts2.dispatcher.FilterDispatcher</filter-class>
+    </filter> 
 
     <filter-mapping>
-        <filter-name>webwork</filter-name>
+        <filter-name>struts2</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 
@@ -22,13 +33,4 @@
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
 
-    <!--
-        This typically isn't required, as the taglib is included in webwork.jar.
-        If you really need a taglib configuration within web.xml, copy webwork/src/java/META-INF/taglib.tld
-        to the WEB-INF directory as webwork.tld.
-     -->
-    <!--taglib>
-        <taglib-uri>webwork</taglib-uri>
-        <taglib-location>/WEB-INF/webwork.tld</taglib-location>
-    </taglib-->
 </web-app>

@@ -3,22 +3,29 @@ package br.com.fastorder.action;
 import java.util.Collection;
 import java.util.Date;
 
+import org.springframework.transaction.annotation.Transactional;
+
+import com.opensymphony.xwork2.Action;
+import com.opensymphony.xwork2.ActionSupport;
+import com.opensymphony.xwork2.util.CreateIfNull;
+
 import br.com.fastorder.dao.ContaDao;
 import br.com.fastorder.dao.DaoException;
 import br.com.fastorder.dao.MesaDao;
 import br.com.fastorder.model.Conta;
 import br.com.fastorder.model.Mesa;
 
-import com.opensymphony.xwork.ActionSupport;
-
 /**
  * @author Casa
  *
  */
 public class ContaAction extends ActionSupport {
-
-	private static final long serialVersionUID = 1L;
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3444352126525396355L;
+
 	private Collection<Conta> contas;
 	
 	private ContaDao contaDao;
@@ -27,25 +34,29 @@ public class ContaAction extends ActionSupport {
 
 	private MesaDao mesaDao;
 
+	@CreateIfNull(value = true)
 	private Conta conta;
 	
+	@Transactional
 	public String list() throws DaoException {
-		Conta conta = new Conta( (Date)null );		
+		Conta conta = new Conta((Date) null);		
 		contas = contaDao.findByExample(conta);
 		
-		return SUCCESS;
+		return Action.SUCCESS;
 	}
 	
+	@Transactional
 	public String prepare() throws DaoException {
 		mesas = mesaDao.listAll();
-		return SUCCESS;
+		return Action.SUCCESS;
 	}
 	
+	@Transactional
 	public String insert() throws DaoException {
 		conta = new Conta(conta, new Date());
 		contaDao.save(conta);
 		addActionMessage("Conta para a mesa " + conta.getMesa().getId() + " aberta com sucesso.");
-		return SUCCESS;
+		return Action.SUCCESS;
 	}
 
 	public Collection<Conta> getContas() {
