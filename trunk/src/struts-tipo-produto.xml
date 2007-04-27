@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	
+	<package name="tipo-produto" extends="default" namespace="/tipoproduto">		
+		
+        <action name="listar" method="list" class="tipoProdutoAction">
+        	<interceptor-ref name="permissionStack" />
+            <result name="success" type="dispatcher" >listar.jsp</result>
+        </action>
+        
+        <action name="novo">      
+        	<interceptor-ref name="permissionStack" />        
+            <result name="success" type="dispatcher" >cadastrar.jsp</result>
+        </action>
+        
+        <action name="carregar" method="load" class="tipoProdutoAction">      
+        	<interceptor-ref name="permissionStack" />        
+            <result name="success" type="dispatcher" >carregar.jsp</result>
+            <result name="error" type="chain" >
+            	<param name="actionName">listar</param>
+            </result>          
+        </action>        
+        
+        <action name="cadastrar" method="insert" class="tipoProdutoAction">      
+        	<interceptor-ref name="permissionStack" />        
+            <result name="success" type="chain" >
+            	<param name="actionName">listar</param>         	
+            </result>
+            <result name="error" type="chain" >
+            	<param name="actionName">listar</param>     	           	
+            </result>
+            <result name="input" type="chain" >
+            	<param name="actionName">listar</param>     	       	
+            </result> 
+        </action>
+        
+        <action name="atualizar" method="update" class="tipoProdutoAction">      
+        	<interceptor-ref name="permissionStack" />        
+            <result name="success" type="chain" >
+            	<param name="actionName">listar</param>    	
+            </result>
+            <result name="error" type="chain" >
+            	<param name="actionName">listar</param>    	         	
+            </result>
+            <result name="input" type="chain" >
+            	<param name="actionName">listar</param>   	
+            </result>                    
+        </action>
+        
+        <action name="excluir" method="delete" class="tipoProdutoAction">      
+        	<interceptor-ref name="permissionStack" />        
+            <result name="success" type="chain" >
+            	<param name="actionName">listar</param>
+            </result>
+            <result name="error" type="chain" >
+            	<param name="actionName">listar</param>  	          	
+            </result>           
+        </action> 
+		
+	</package>
+	
+</struts>

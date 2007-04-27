@@ -1,0 +1,5 @@
+* Formatadores
+* Alguns Testes de unidade
+* Transactions Scripts apenas para CRUDs simples
+* Tratar ObjetoNaoEncontradoException na classe HibernateGenericDao para os métodos update e delete
+* Melhorar a exception ObjetoNaoEncontradoException
