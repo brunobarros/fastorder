@@ -1,5 +1,5 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
-
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <h3>Alterar Mesa</h3>
 
 <form method="post" action="<s:url action="atualizar" namespace="/mesa" includeParams="none" />">
