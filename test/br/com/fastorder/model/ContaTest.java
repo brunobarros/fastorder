@@ -57,11 +57,6 @@ public class ContaTest {
 	}
 	
 	@Test
-	public void testGetValor() {
-		fail();
-	}
-	
-	@Test
 	public void testIsFechadaTrue() {
 		conta.abrirConta();
 		conta.fecharConta();

@@ -1,20 +1,23 @@
 package br.com.fastorder.action;
 
-import static org.junit.Assert.*;
+import static org.easymock.EasyMock.expect;
+import static org.easymock.EasyMock.expectLastCall;
+import static org.easymock.classextension.EasyMock.createMock;
+import static org.easymock.classextension.EasyMock.replay;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 import java.util.Collection;
 
-import static org.easymock.classextension.EasyMock.*;
-
 import org.junit.Before;
 import org.junit.Test;
-
-import com.opensymphony.xwork2.Action;
 
 import br.com.fastorder.dao.DaoException;
 import br.com.fastorder.dao.ObjetoNaoEncontradoException;
 import br.com.fastorder.dao.TipoProdutoDao;
 import br.com.fastorder.model.TipoProduto;
+
+import com.opensymphony.xwork2.Action;
 
 public class TipoProdutoActionTest {
 	

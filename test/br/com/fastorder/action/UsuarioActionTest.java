@@ -1,11 +1,12 @@
 package br.com.fastorder.action;
 
-import static org.junit.Assert.*;
+import static org.easymock.EasyMock.expect;
+import static org.easymock.classextension.EasyMock.createMock;
+import static org.easymock.classextension.EasyMock.replay;
+import static org.junit.Assert.assertEquals;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import static org.easymock.classextension.EasyMock.*;
 
 import org.junit.Before;
 import org.junit.Test;
