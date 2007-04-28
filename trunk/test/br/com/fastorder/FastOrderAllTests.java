@@ -14,7 +14,8 @@ import br.com.fastorder.model.ContaTest;
 import br.com.fastorder.util.Md5Test;
 
 @RunWith(Suite.class)
-@SuiteClasses( { TipoProdutoActionTest.class, 
+@SuiteClasses( { 
+	TipoProdutoActionTest.class, 
 	ProdutoActionTest.class , 
 	UsuarioActionTest.class, 
 	ContaTest.class, 
