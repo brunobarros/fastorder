@@ -7,6 +7,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
+import br.com.fastorder.action.ContaActionTest;
 import br.com.fastorder.action.ProdutoActionTest;
 import br.com.fastorder.action.TipoProdutoActionTest;
 import br.com.fastorder.action.UsuarioActionTest;
@@ -15,6 +16,7 @@ import br.com.fastorder.util.Md5Test;
 
 @RunWith(Suite.class)
 @SuiteClasses( { 
+	ContaActionTest.class, 
 	TipoProdutoActionTest.class, 
 	ProdutoActionTest.class , 
 	UsuarioActionTest.class, 
