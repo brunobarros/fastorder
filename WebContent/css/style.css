@@ -1,6 +1,6 @@
 @CHARSET "ISO-8859-1";
 body {
-	margin: 64px;
+	margin: 30px;
 	font-family: "lucida grande", verdana, lucida, sans-serif;
 	font-size: 8pt;
 	background-color: #FFFFFF;
@@ -143,6 +143,7 @@ h3 {
 
 #footer p {
 	font-size: 7pt;
+	text-align: center;
 }
 
 b.rtop, b.rbottom{display:block; background: none;}
@@ -166,4 +167,130 @@ b.rtop b.r4, b.rbottom b.r4{margin: 0 1px; height: 2px}
 #conta thead tr {
 	background-color: #467aa7;
 	color: #ffffff;
+}
+
+/* LOCATION BAR */
+
+#location {
+margin-bottom: 1em;
+background-color: #bfcbe0;
+}
+
+#location .c {
+display: block;
+clear: left;
+background-color: #fff;
+}
+
+#location .c * {
+display: block;
+height: 1px;
+overflow: hidden;
+background-color: #bfcbe0;
+}
+
+#location .c1, #location .c2, #location .c3 {
+border-width: 0 1px;
+border-style: solid;
+}
+
+#location .c1 {
+padding: 0 1px;
+margin: 0 1px;
+background-color: #bfcbe0;
+border-color: #f3f5f9;
+}
+
+#location .c2 {
+padding: 0 1px;
+background-color: #c3cee1;
+border-color: #f3f5f9;
+}
+
+#location .c3 { border-color: #d3dbe9; }
+
+#location p {
+padding: 0 .5em;
+margin: 0;
+font-weight: bold;
+font-size: 12px;
+}
+
+/* NAVIGATION BAR */
+
+#navigation {
+margin-bottom: 1em;
+background-color: #32528c;
+}
+
+#navigation .clear { clear: left; } /* Added because of a weird Safari bug */
+
+#navigation .c {
+display: block;
+background-color: #fff;
+}
+
+#navigation .c *  {
+display: block;
+height: 1px;
+overflow: hidden;
+background-color: #32528c;
+}
+
+#navigation .c1, #navigation .c2, #navigation .c3 {
+border-width: 0 1px;
+border-style: solid;
+}
+
+#navigation .c1 {
+padding: 0 1px;
+margin: 0 1px;
+background-color: #7288b0;
+border-color: #d9dfe9;
+}
+
+#navigation .c2 {
+padding: 0 1px;
+background-color: #3e5c93;
+border-color: #d9dfe9;
+}
+
+#navigation .c3 { border-color: #7288b0; }
+
+#navigation p {
+padding: 0 .2em;
+margin: 0;
+color: #fff;
+font-weight: bold;
+font-size: 14px;
+}
+
+#navigation ul {
+list-style-type: none;
+padding: 0 .2em;
+margin: 0;
+}
+
+#navigation li {
+float: left;
+color: #fff;
+text-decoration: none;
+padding: 0 .4em;
+}
+
+#navigation ul ul {
+display: none;
+position: absolute;
+left: -1px;
+z-index: 3;
+padding: .2em 0;
+background-color: #eff3fb;
+border: 1px solid #8ba7cd;
+border-top: 3px solid #32528c;
+float: none;
+}
+
+#navigation ul ul li {
+float: none;
+border: none;
 }

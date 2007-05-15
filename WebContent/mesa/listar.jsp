@@ -19,7 +19,23 @@
 	<div id="actions" style="margin-bottom: 20px;">
 	</div>
 	
-	<h3>Mesas</h3>
+	<div id="navigation">
+
+	<b class="c">
+	<b class="c1"><b></b></b>
+	<b class="c2"><b></b></b>
+	<b class="c3"></b>
+	</b>
+	
+	<p>Mesas</p>
+	
+	<b class="c">
+	<b class="c3"></b>
+	<b class="c2"><b></b></b>
+	<b class="c1"><b></b></b>
+	</b>
+	
+	</div>
 	
 	<s:actionmessage/>
 	<s:actionerror/>

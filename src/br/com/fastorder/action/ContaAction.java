@@ -5,15 +5,16 @@ import java.util.Date;
 
 import org.springframework.transaction.annotation.Transactional;
 
-import com.opensymphony.xwork2.Action;
-import com.opensymphony.xwork2.ActionSupport;
-import com.opensymphony.xwork2.util.CreateIfNull;
-
 import br.com.fastorder.dao.ContaDao;
 import br.com.fastorder.dao.DaoException;
 import br.com.fastorder.dao.MesaDao;
+import br.com.fastorder.dao.ObjetoNaoEncontradoException;
 import br.com.fastorder.model.Conta;
 import br.com.fastorder.model.Mesa;
+
+import com.opensymphony.xwork2.Action;
+import com.opensymphony.xwork2.ActionSupport;
+import com.opensymphony.xwork2.util.CreateIfNull;
 
 /**
  * @author Casa
@@ -53,9 +54,17 @@ public class ContaAction extends ActionSupport {
 	
 	@Transactional
 	public String insert() throws DaoException {
-		conta = new Conta(conta, new Date());
+		conta.abrirConta();
 		contaDao.save(conta);
 		addActionMessage("Conta para a mesa " + conta.getMesa().getId() + " aberta com sucesso.");
+		return Action.SUCCESS;
+	}
+	
+	@Transactional
+	public String update() throws DaoException, ObjetoNaoEncontradoException {
+		conta.fecharConta();
+		contaDao.update(conta);
+		addActionMessage("Conta fechada com sucesso.");
 		return Action.SUCCESS;
 	}
 
@@ -63,7 +72,7 @@ public class ContaAction extends ActionSupport {
 		return contas;
 	}
 
-	public void setContaDAO(ContaDao contaDAO) {
+	public void setContaDao(ContaDao contaDAO) {
 		this.contaDao = contaDAO;
 	}
 
