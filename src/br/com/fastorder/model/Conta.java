@@ -2,8 +2,11 @@ package br.com.fastorder.model;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -208,6 +211,17 @@ public class Conta implements Serializable {
 
 	public void setPedidos(Set<Pedido> pedidos) {
 		this.pedidos = pedidos;
+	}
+
+	public Collection<Conta> getContasAbertas(Collection<Conta> contas) {
+		Collection<Conta> contasAbertas = new ArrayList<Conta>();
+		for (Iterator i = contas.iterator(); i.hasNext();) {
+			Conta conta = (Conta) i.next();
+			if (!conta.isFechada()) {
+				contasAbertas.add(conta);			
+			}				
+		}			
+		return contasAbertas;
 	}
 	
 

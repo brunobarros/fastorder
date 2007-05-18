@@ -36,7 +36,7 @@
 		<tr>
 			<td colspan="2" align="right">
 				<input class="button" type="submit" value="Abrir conta" />
-				<input type="button" class="button" value="Cancelar" onclick="window.location = '<s:url action="listar" namespace="/conta"  includeParams="none" />'" />
+				<input type="button" class="button" value="Voltar" onclick="window.location = '<s:url action="listar" namespace="/conta"  includeParams="none" />'" />
 			</td>
 		</tr>
 	</table>

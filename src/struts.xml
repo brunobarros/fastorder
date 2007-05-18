@@ -18,7 +18,7 @@
     	
     	</interceptors>
         
-        <global-results >
+        <global-results>
         	<result name="login" type="redirect-action">
         		<param name="actionName">login</param>
         		<param name="namespace">/usuario</param>        		

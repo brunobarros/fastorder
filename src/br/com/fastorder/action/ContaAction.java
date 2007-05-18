@@ -1,7 +1,6 @@
 package br.com.fastorder.action;
 
 import java.util.Collection;
-import java.util.Date;
 
 import org.springframework.transaction.annotation.Transactional;
 
@@ -37,11 +36,14 @@ public class ContaAction extends ActionSupport {
 
 	@CreateIfNull(value = true)
 	private Conta conta;
+
+	private String id;
 	
 	@Transactional
 	public String list() throws DaoException {
-		Conta conta = new Conta((Date) null);		
-		contas = contaDao.findByExample(conta);
+		contas = contaDao.listAll();
+		//FIXME Alterar esta implementação para obter do banco apenas as contas abertas
+		contas = conta.getContasAbertas(contas);
 		
 		return Action.SUCCESS;
 	}
@@ -61,11 +63,19 @@ public class ContaAction extends ActionSupport {
 	}
 	
 	@Transactional
-	public String update() throws DaoException, ObjetoNaoEncontradoException {
-		conta.fecharConta();
-		contaDao.update(conta);
-		addActionMessage("Conta fechada com sucesso.");
-		return Action.SUCCESS;
+	public String update() throws Exception {
+		try {
+			conta = contaDao.get(Long.valueOf(id));
+			if (conta == null) throw new ObjetoNaoEncontradoException("Conta não existe.");  
+			
+			conta.fecharConta();
+			contaDao.update(conta);
+			addActionMessage("Conta da mesa " + conta.getMesa().getId() + " fechada com sucesso.");
+			return Action.SUCCESS;
+		} catch (Exception e) {
+			addActionMessage(e.getMessage());
+			return Action.ERROR;
+		}
 	}
 
 	public Collection<Conta> getContas() {
@@ -90,6 +100,14 @@ public class ContaAction extends ActionSupport {
 
 	public void setConta(Conta conta) {
 		this.conta = conta;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String contaId) {
+		this.id = contaId;
 	}
 	
 }
