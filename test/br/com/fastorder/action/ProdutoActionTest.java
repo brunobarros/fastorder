@@ -35,7 +35,7 @@ public class ProdutoActionTest {
 	}
 
 	@Test
-	public final void testList() throws DaoException {
+	public final void list() throws DaoException {
 		Collection<Produto> produtosMock = createMock(Collection.class);
 		expect(produtosMock.size()).andReturn(7);
 		
@@ -56,7 +56,7 @@ public class ProdutoActionTest {
 	}
 
 	@Test
-	public final void testPrepare() throws DaoException {
+	public final void prepare() throws DaoException {
 		Collection<TipoProduto> tiposProdutoMock = createMock(Collection.class);
 		expect(tiposProdutoMock.size()).andReturn(3);
 		
@@ -76,7 +76,7 @@ public class ProdutoActionTest {
 	}
 
 	@Test
-	public final void testLoad() throws DaoException, ObjetoNaoEncontradoException {
+	public final void load() throws DaoException, ObjetoNaoEncontradoException {
 		Collection<TipoProduto> tiposProdutoMock = createMock(Collection.class);
 		expect(tiposProdutoMock.size()).andReturn(3);
 		
@@ -102,7 +102,7 @@ public class ProdutoActionTest {
 	}
 	
 	@Test
-	public final void testLoadObjetoNaoEncontrado() throws DaoException, ObjetoNaoEncontradoException {
+	public final void loadObjetoNaoEncontrado() throws DaoException, ObjetoNaoEncontradoException {
 		expect(produtoDaoMock.get(Long.valueOf(1))).andThrow(new ObjetoNaoEncontradoException());
 		
 		replay(produtoDaoMock);
@@ -115,7 +115,7 @@ public class ProdutoActionTest {
 	}
 
 	@Test
-	public final void testInsert() throws DaoException {
+	public final void insert() throws DaoException {
 		expect(produtoDaoMock.save(new Produto())).andReturn(new Produto(Long.valueOf(1)));
 		
 		replay(produtoDaoMock);
@@ -128,7 +128,7 @@ public class ProdutoActionTest {
 	}
 
 	@Test
-	public final void testUpdate() throws DaoException, ObjetoNaoEncontradoException {
+	public final void update() throws DaoException, ObjetoNaoEncontradoException {
 		produtoDaoMock.update(new Produto(Long.valueOf(1)));
 		
 		replay(produtoDaoMock);
@@ -141,7 +141,7 @@ public class ProdutoActionTest {
 	}
 	
 	@Test
-	public final void testUpdateObjetoNaoEncontrado() throws DaoException, ObjetoNaoEncontradoException {
+	public final void updateObjetoNaoEncontrado() throws DaoException, ObjetoNaoEncontradoException {
 		produtoDaoMock.update(new Produto(Long.valueOf(1)));
 		expectLastCall().andThrow(new ObjetoNaoEncontradoException());
 		
@@ -155,7 +155,7 @@ public class ProdutoActionTest {
 	}	
 
 	@Test
-	public final void testDelete() throws DaoException, ObjetoNaoEncontradoException {
+	public final void delete() throws DaoException, ObjetoNaoEncontradoException {
 		produtoDaoMock.delete(new Produto(Long.valueOf(1)));
 		
 		replay(produtoDaoMock);
@@ -168,7 +168,7 @@ public class ProdutoActionTest {
 	}
 	
 	@Test
-	public final void testDeleteObjetoNaoEncontrado() throws DaoException, ObjetoNaoEncontradoException {
+	public final void deleteObjetoNaoEncontrado() throws DaoException, ObjetoNaoEncontradoException {
 		produtoDaoMock.delete(new Produto(Long.valueOf(1)));
 		expectLastCall().andThrow(new ObjetoNaoEncontradoException());
 		

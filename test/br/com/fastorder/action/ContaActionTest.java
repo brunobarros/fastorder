@@ -4,7 +4,6 @@ import static org.easymock.EasyMock.createMock;
 import static org.easymock.EasyMock.expect;
 import static org.easymock.EasyMock.replay;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -36,25 +35,21 @@ public class ContaActionTest {
 	}
 	
 	@Test
-	public void testUpdate() throws DaoException, ObjetoNaoEncontradoException {
-		try {
-			Conta conta = new Conta(Long.valueOf(15), null, new Mesa(Long.valueOf(1)), null, null);
-			conta.abrirConta();
+	public void update() throws DaoException, ObjetoNaoEncontradoException {
+		Conta conta = new Conta(Long.valueOf(15), null, new Mesa(Long.valueOf(1)), null, null);
+		conta.abrirConta();
+		
+		expect(contaDaoMock.get(Long.valueOf(15))).andReturn(conta);
+		contaDaoMock.update(conta);
 			
-			expect(contaDaoMock.get(Long.valueOf(15))).andReturn(conta);
-			contaDaoMock.update(conta);
+		replay(contaDaoMock);
 			
-			replay(contaDaoMock);
+		action.setConta(conta);
+		action.setId("15");
 			
-			action.setConta(conta);
-			action.setId("15");
-			
-			assertEquals(Action.SUCCESS, action.update());
-			assertEquals(1, action.getActionMessages().size());
-			assertEquals(0, action.getActionErrors().size());
-		} catch (Exception e) {
-			fail(e.getMessage());
-		}
+		assertEquals(Action.SUCCESS, action.update());
+		assertEquals(1, action.getActionMessages().size());
+		assertEquals(0, action.getActionErrors().size());
 	}
 
 }

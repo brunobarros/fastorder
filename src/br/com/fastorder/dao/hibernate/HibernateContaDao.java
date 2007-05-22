@@ -1,8 +1,14 @@
 package br.com.fastorder.dao.hibernate;
 
+import java.util.Collection;
+
+import org.hibernate.Criteria;
+import org.hibernate.HibernateException;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 
 import br.com.fastorder.dao.ContaDao;
+import br.com.fastorder.dao.DaoException;
 import br.com.fastorder.model.Conta;
 
 /**
@@ -16,6 +22,18 @@ public class HibernateContaDao extends HibernateGenericDao<Conta, Long> implemen
 
 	public HibernateContaDao(SessionFactory sessionFactory) {
 		super(Conta.class, sessionFactory);
+	}
+
+	public Collection<Conta> listContasAbertas() throws DaoException {
+		try {
+			Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Conta.class);
+			
+			criteria.add(Restrictions.isNull("dataFechamento"));
+			
+			return criteria.list();
+		} catch (HibernateException e) {
+			throw new DaoException(e);
+		}
 	}
 
 }

@@ -15,61 +15,56 @@ public class ContaTest {
 	}
 
 	@Test
-	public void testRegistrarPedido() {
+	public void registrarPedido() {
 		conta.abrirConta();
 		assertTrue(conta.registrarPedido(new Pedido(Long.valueOf(1))));
 	}
 	
 	@Test
-	public void testCancelarPedidoOK() {
+	public void cancelarPedidoOK() {
 		conta.abrirConta();
 		assertTrue(conta.registrarPedido(new Pedido(Long.valueOf(1))));		
 		assertTrue(conta.cancelarPedido(new Pedido(Long.valueOf(1))));
 	}
 	
 	@Test
-	public void testCancelarPedidoFail() {
+	public void cancelarPedidoFail() {
 		conta.abrirConta();
 		assertFalse(conta.cancelarPedido(new Pedido(Long.valueOf(1))));
 	}
 	
 	@Test
-	public void testAbrirConta() {		
+	public void abrirConta() {		
 		conta.abrirConta();
 		assertFalse(conta.isFechada());
 	}
 	
 	@Test
-	public void testFecharContaOk() {
+	public void fecharContaOk() {
+		conta.abrirConta();
+		conta.fecharConta();
+		assertTrue(conta.isFechada());
+	}
+	
+	@Test(expected = IllegalStateException.class)
+	public void fecharContaFail() {
+		conta.fecharConta();
+	}
+	
+	@Test
+	public void isFechadaTrue() {
 		conta.abrirConta();
 		conta.fecharConta();
 		assertTrue(conta.isFechada());
 	}
 	
 	@Test
-	public void testFecharContaFail() {		
-		try {
-			conta.fecharConta();
-			fail("Deveria ter lançado uma exception");
-		} catch (IllegalStateException e) {
-			assertTrue(true);
-		}
-	}
-	
-	@Test
-	public void testIsFechadaTrue() {
-		conta.abrirConta();
-		conta.fecharConta();
-		assertTrue(conta.isFechada());
-	}
-	
-	@Test
-	public void testIsFechadaFalse() {
+	public void isFechadaFalse() {
 		assertFalse(conta.isFechada());
 	}
 	
 	@Test
-	public void testReabrirConta() {
+	public void reabrirConta() {
 		conta.abrirConta();
 		conta.fecharConta();
 		assertTrue(conta.isFechada());

@@ -23,8 +23,9 @@ public class PermissionInterceptor implements Interceptor {
 
 	public String intercept(ActionInvocation action) throws Exception {
 		Usuario usuario = (Usuario) ActionContext.getContext().getSession().get("usuario");
-;
+
 		if (usuario == null) {
+
 			ActionContext.getContext().getSession().put("namespace", action.getProxy().getNamespace());
 			ActionContext.getContext().getSession().put("uri", getUri(action));
 			
