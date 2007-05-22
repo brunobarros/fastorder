@@ -42,7 +42,7 @@ public class UsuarioActionTest {
 	}
 
 	@Test
-	public final void testLoginOK() throws DaoException, ObjetoNaoEncontradoException {
+	public final void loginOK() throws DaoException, ObjetoNaoEncontradoException {
 		Usuario usuario = new Usuario();
 		usuario.setNome("nome");
 		usuario.setLogin("login");
@@ -70,7 +70,7 @@ public class UsuarioActionTest {
 	}
 	
 	@Test
-	public final void testLoginLoginInvalido() throws DaoException, ObjetoNaoEncontradoException {				
+	public final void loginLoginInvalido() throws DaoException, ObjetoNaoEncontradoException {				
 		expect(usuarioDaoMock.get("login")).andThrow(new ObjetoNaoEncontradoException());
 		
 		replay(usuarioDaoMock);
@@ -90,7 +90,7 @@ public class UsuarioActionTest {
 	}
 	
 	@Test
-	public final void testLoginSenhaInvalida() throws DaoException, ObjetoNaoEncontradoException {		
+	public final void loginSenhaInvalida() throws DaoException, ObjetoNaoEncontradoException {		
 		Usuario usuario = new Usuario();
 		usuario.setNome("nome");
 		usuario.setLogin("login");
@@ -113,7 +113,7 @@ public class UsuarioActionTest {
 	}
 	
 	@Test
-	public final void testLoginRedirectAfterPost() throws DaoException, ObjetoNaoEncontradoException {		
+	public final void loginRedirectAfterPost() throws DaoException, ObjetoNaoEncontradoException {		
 		Usuario usuario = new Usuario();
 		usuario.setNome("nome");
 		usuario.setLogin("login");
@@ -144,7 +144,7 @@ public class UsuarioActionTest {
 	}	
 
 	@Test
-	public final void testLogoff() {		
+	public final void logoff() {		
 		expect(sessionMock.remove("usuario")).andReturn(new Usuario("teste"));
 		
 		replay(sessionMock);

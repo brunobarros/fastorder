@@ -34,7 +34,7 @@ public class Md5Test {
 	 * Test method for {@link br.gov.al.ser.noticias.util.Md5#crypt(java.lang.String)}.
 	 */
 	@Test
-	public void testCryptStringOk() {
+	public void cryptStringOk() {
 		assertEquals(messageHash, Md5.crypt(message));
 	}
 	
@@ -42,7 +42,7 @@ public class Md5Test {
 	 * Test method for {@link br.gov.al.ser.noticias.util.Md5#crypt(java.lang.String)}.
 	 */
 	@Test
-	public void testCryptStringFail() {
+	public void cryptStringFail() {
 		assertNotSame(messageHash, Md5.crypt(message + message));
 	}	
 	
@@ -51,7 +51,7 @@ public class Md5Test {
 	 * @throws IOException 
 	 */
 	@Test
-	public void testCryptFileOk() throws IOException {
+	public void cryptFileOk() throws IOException {
 		assertEquals(fileHash, Md5.crypt(File.createTempFile("md5", "ok")));
 	}
 	
@@ -60,7 +60,7 @@ public class Md5Test {
 	 * @throws IOException 
 	 */
 	@Test
-	public void testCryptFileFail() throws IOException {
+	public void cryptFileFail() throws IOException {
 		assertNotSame(fileHash, Md5.crypt(File.createTempFile("md5", "fail")));
 	}	
 	
@@ -68,7 +68,7 @@ public class Md5Test {
 	 * Test method for {@link br.gov.al.ser.noticias.util.Md5#crypt(byte[])}.
 	 */
 	@Test
-	public void testCryptByteArrayOk() {
+	public void cryptByteArrayOk() {
 		assertEquals(messageHash, Md5.crypt(message.getBytes()));
 	}
 	
@@ -76,7 +76,7 @@ public class Md5Test {
 	 * Test method for {@link br.gov.al.ser.noticias.util.Md5#crypt(byte[])}.
 	 */
 	@Test
-	public void testCryptByteArrayFail() {
+	public void cryptByteArrayFail() {
 		assertNotSame(messageHash, Md5.crypt((message + message).getBytes()));
 	}	
 

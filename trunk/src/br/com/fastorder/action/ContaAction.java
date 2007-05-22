@@ -41,9 +41,7 @@ public class ContaAction extends ActionSupport {
 	
 	@Transactional
 	public String list() throws DaoException {
-		contas = contaDao.listAll();
-		//FIXME Alterar esta implementação para obter do banco apenas as contas abertas
-		contas = conta.getContasAbertas(contas);
+		contas = contaDao.listContasAbertas();
 		
 		return Action.SUCCESS;
 	}
@@ -63,7 +61,7 @@ public class ContaAction extends ActionSupport {
 	}
 	
 	@Transactional
-	public String update() throws Exception {
+	public String update() throws DaoException {
 		try {
 			conta = contaDao.get(Long.valueOf(id));
 			if (conta == null) throw new ObjetoNaoEncontradoException("Conta não existe.");  

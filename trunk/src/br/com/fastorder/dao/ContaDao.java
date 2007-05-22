@@ -1,5 +1,7 @@
 package br.com.fastorder.dao;
 
+import java.util.Collection;
+
 import br.com.fastorder.model.Conta;
 
 /**
@@ -8,5 +10,7 @@ import br.com.fastorder.model.Conta;
  *
  */
 public interface ContaDao extends GenericDao<Conta, Long> {
+	
+	Collection<Conta> listContasAbertas() throws DaoException;
 	
 }

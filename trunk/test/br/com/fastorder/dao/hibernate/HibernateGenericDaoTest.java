@@ -17,67 +17,67 @@ public class HibernateGenericDaoTest {
 	}
 
 	@Test
-	public final void testGet() {
+	public final void get() {
 		fail("Not yet implemented"); // TODO
 	}
 	
 	@Test
-	public final void testGetObjetoNaoEncontrado() {
+	public final void getObjetoNaoEncontrado() {
 		fail("Not yet implemented"); // TODO
 	}	
 
 	@Test
-	public final void testSave() {
+	public final void save() {
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
-	public final void testUpdate() {
+	public final void update() {
 		fail("Not yet implemented"); // TODO
 	}
 	
 	@Test
-	public final void testUpdateObjetoNaoEncontrado() {
+	public final void updateObjetoNaoEncontrado() {
 		fail("Not yet implemented"); // TODO
 	}	
 
 	@Test
-	public final void testDelete() {
+	public final void delete() {
 		fail("Not yet implemented"); // TODO
 	}
 	
 	@Test
-	public final void testDeleteObjetoNaoEncontrado() {
+	public final void deleteObjetoNaoEncontrado() {
 		fail("Not yet implemented"); // TODO
 	}	
 
 	@Test
-	public final void testFindByExamplePageCount() {
+	public final void findByExamplePageCount() {
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
-	public final void testListAllPageCount() {
+	public final void listAllPageCount() {
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
-	public final void testFindByExamplePersistentObject() {
+	public final void findByExamplePersistentObject() {
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
-	public final void testFindByExamplePersistentObjectIntInt() {
+	public final void findByExamplePersistentObjectIntInt() {
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
-	public final void testListAll() {
+	public final void listAll() {
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
-	public final void testListAllIntInt() {
+	public final void listAllIntInt() {
 		fail("Not yet implemented"); // TODO
 	}
 
