@@ -1,16 +1,17 @@
 package br.com.fastorder.action;
 
-import static org.easymock.EasyMock.createMock;
 import static org.easymock.EasyMock.expect;
-import static org.easymock.EasyMock.replay;
+import static org.easymock.classextension.EasyMock.createMock;
+import static org.easymock.classextension.EasyMock.replay;
 import static org.junit.Assert.assertEquals;
+
+import java.util.Arrays;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import br.com.fastorder.dao.ContaDao;
-import br.com.fastorder.dao.DaoException;
-import br.com.fastorder.dao.ObjetoNaoEncontradoException;
+import br.com.fastorder.facade.ContaManager;
+import br.com.fastorder.facade.ManagerException;
 import br.com.fastorder.model.Conta;
 import br.com.fastorder.model.Mesa;
 
@@ -24,32 +25,68 @@ import com.opensymphony.xwork2.Action;
 public class ContaActionTest {
 	
 	private ContaAction action;
-	private ContaDao contaDaoMock;
+	
+	private ContaManager contaManagerMock;
 	
 	@Before
 	public void setUp() throws Exception {
-		contaDaoMock = createMock(ContaDao.class);
-		
 		action = new ContaAction();
-		action.setContaDao(contaDaoMock);
+		contaManagerMock = createMock(ContaManager.class);
+		action.setContaManager(contaManagerMock);
 	}
 	
 	@Test
-	public void update() throws DaoException, ObjetoNaoEncontradoException {
-		Conta conta = new Conta(Long.valueOf(15), null, new Mesa(Long.valueOf(1)), null, null);
-		conta.abrirConta();
+	public void abrirConta() throws ManagerException {
+		Mesa mesaMock = createMock(Mesa.class);
+		expect(mesaMock.getId()).andReturn(Long.valueOf(1));
+		replay(mesaMock);
 		
-		expect(contaDaoMock.get(Long.valueOf(15))).andReturn(conta);
-		contaDaoMock.update(conta);
-			
-		replay(contaDaoMock);
-			
-		action.setConta(conta);
-		action.setId("15");
-			
-		assertEquals(Action.SUCCESS, action.update());
-		assertEquals(1, action.getActionMessages().size());
-		assertEquals(0, action.getActionErrors().size());
+		Conta conta = new Conta(mesaMock);
+		expect(contaManagerMock.abrirConta(mesaMock)).andReturn(conta);
+		replay(contaManagerMock);
+		
+		action.setMesa(mesaMock);
+		
+		assertEquals("Retorno da action difere do esperado", Action.SUCCESS, action.insert());
+		assertEquals("Não deveria retornar mensagens de erro", 0, action.getActionErrors().size());
+		assertEquals("Deveria retornar uma mensagem", 1, action.getActionMessages().size());
+	}
+	
+	@Test
+	public void abrirContaComMesaOcupada() throws ManagerException {
+		Mesa mesaMock = createMock(Mesa.class);
+		expect(mesaMock.getId()).andReturn(Long.valueOf(1));
+		replay(mesaMock);
+				
+		expect(contaManagerMock.abrirConta(mesaMock)).andThrow(new ManagerException());
+		replay(contaManagerMock);
+		
+		action.setMesa(mesaMock);		
+		
+		assertEquals("Retorno da action difere do esperado", Action.ERROR, action.insert());
+		assertEquals("Deveria retornar mensagens de erro", 1, action.getActionErrors().size());
+		assertEquals("Não deveria retornar uma mensagem", 0, action.getActionMessages().size());
+	}
+	
+	@Test
+	public void listarAbertasSucesso() throws ManagerException {
+		expect(contaManagerMock.listarContasAbertas())
+			.andReturn(Arrays.asList(new Conta[] {new Conta(Long.valueOf(1)), new Conta(Long.valueOf(2))}));
+		replay(contaManagerMock);
+		
+		assertEquals("Retorno da action difere do esperado", Action.SUCCESS, action.list());
+		assertEquals("Não deveria retornar mensagens de erro", 0, action.getActionErrors().size());
+		assertEquals("Não deveria retornar uma mensagem", 0, action.getActionMessages().size());
+	}
+	
+	@Test
+	public void listarAbertasErro() throws ManagerException {
+		expect(contaManagerMock.listarContasAbertas()).andThrow(new ManagerException());
+		replay(contaManagerMock);
+		
+		assertEquals("Retorno da action difere do esperado", Action.ERROR, action.list());
+		assertEquals("Deveria retornar mensagens de erro", 1, action.getActionErrors().size());
+		assertEquals("Não deveria retornar uma mensagem", 0, action.getActionMessages().size());
 	}
 
 }
