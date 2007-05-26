@@ -5,6 +5,9 @@ import java.util.Collection;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Projection;
+import org.hibernate.criterion.ProjectionList;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
 import br.com.fastorder.dao.ContaDao;
@@ -27,6 +30,14 @@ public class HibernateContaDao extends HibernateGenericDao<Conta, Long> implemen
 	public Collection<Conta> listContasAbertas() throws DaoException {
 		try {
 			Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Conta.class);
+			
+//			ProjectionList projectionList = Projections.projectionList();
+//			
+//			projectionList.add(Projections.property("id"));
+//			projectionList.add(Projections.property("mesa"));
+//			projectionList.add(Projections.property("dataAbertura"));
+//			
+//			criteria.setProjection(projectionList);
 			
 			criteria.add(Restrictions.isNull("dataFechamento"));
 			
