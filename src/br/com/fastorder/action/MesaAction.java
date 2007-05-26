@@ -51,6 +51,7 @@ public class MesaAction extends ActionSupport {
 		
 		mesas = mesaDao.listAll(currentItem, MAX_RESULTS);
 		createIndex();
+
 		return Action.SUCCESS;
 	}
 

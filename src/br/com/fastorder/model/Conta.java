@@ -8,6 +8,7 @@ import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
@@ -31,7 +32,7 @@ public class Conta implements Serializable {
 	@GeneratedValue
 	private Long id;
 	
-	@OneToMany(mappedBy = "conta", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "conta", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private Set<Pedido> pedidos = new HashSet<Pedido>();
 	
 	@NotNull
@@ -168,6 +169,11 @@ public class Conta implements Serializable {
         if (id != null ? !id.equals(conta.id) : conta.id != null) return false;
 
         return true;
+	}
+
+	@Override
+	public String toString() {
+		return String.format("{Conta id=[%s] dataAbertura=[%s]}", id, dataAbertura);
 	}
 
 	public Date getDataAbertura() {

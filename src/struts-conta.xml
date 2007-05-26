@@ -10,33 +10,22 @@
 		<action name="listar" method="list" class="contaAction">
 			<interceptor-ref name="permissionStack" />
 			<result name="success" type="dispatcher">listar.jsp</result>
+			<result name="error" type="dispatcher">listar.jsp</result>		
 		</action>
 		
-		<action name="novo" method="prepare" class="contaAction">      
+		<action name="novo" method="list" class="mesaAction">      
 			<interceptor-ref name="permissionStack" />        
-		    <result name="success" type="dispatcher" >cadastrar.jsp</result>
+		    <result name="success" type="dispatcher" >cadastrar.jsp</result>		    		    
+		    <result name="error" type="dispatcher" >cadastrar.jsp</result>
+		    <result name="input" type="dispatcher" >cadastrar.jsp</result>		    
 		</action>
 		
 		<action name="cadastrar" method="insert" class="contaAction">      
 			<interceptor-ref name="permissionStack" />        
-		    <result name="success" type="chain" >novo</result>
+		    <result name="success" type="chain" >listar</result>
 		    <result name="error" type="chain" >novo</result>
-		    <result name="input" type="chain" >novo</result>
-		</action>		
-		
-		<action name="atualizar" method="update" class="contaAction">      
-			<interceptor-ref name="permissionStack" />        
-		    <result name="success" type="chain" >listar</result>
-		    <result name="error" type="chain" >listar</result>
-		    <result name="input" type="chain" >listar</result>
-		</action>
-		
-		<action name="excluir" method="delete" class="contaAction">      
-			<interceptor-ref name="permissionStack" />        
-		    <result name="success" type="chain" >listar</result>
-		    <result name="error" type="chain" >listar</result>
-		    <result name="input" type="chain" >listar</result>
-		</action>				
+		    <result name="input" type="dispatcher" >cadastrar.jsp</result>		    
+		</action>			
 		
 	</package>
 	

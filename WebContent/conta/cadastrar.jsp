@@ -26,7 +26,7 @@
 		<tr>
 			<td>Número da mesa:</td>
 			<td>
-				<select name="conta.mesa.id">
+				<select name="mesa.id">
 					<s:iterator value="mesas">
 						<option value="<s:property value="id" />"><s:property value="id" /></option>
 					</s:iterator>

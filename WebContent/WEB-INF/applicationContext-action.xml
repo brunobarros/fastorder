@@ -3,6 +3,9 @@
 
 <beans default-autowire="autodetect">
 
+	<!-- manager's -->
+    <bean id="contaManager" class="br.com.fastorder.facade.ContaManager" scope="prototype" />	
+    
 	<!--  actions -->
     <bean id="usuarioAction" class="br.com.fastorder.action.UsuarioAction" scope="prototype" />	
 	

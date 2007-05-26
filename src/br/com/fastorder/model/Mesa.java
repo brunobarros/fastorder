@@ -36,6 +36,16 @@ public class Mesa implements Serializable {
 		this.id = id;
 	}
 	
+	public boolean hasContaAberta() {
+		for (Conta conta : contas) {
+			if (!conta.isFechada()) {
+				return true;
+			}
+		}
+		
+		return false;
+	}
+	
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
 	 */
@@ -66,7 +76,13 @@ public class Mesa implements Serializable {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	
-	
+
+	public void setContas(Set<Conta> contas) {
+		this.contas = contas;
+	}
+
+	public Set<Conta> getContas() {
+		return contas;
+	}
 
 }
